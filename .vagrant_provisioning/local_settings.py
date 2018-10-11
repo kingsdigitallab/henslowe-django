@@ -46,3 +46,13 @@ except ImportError:
 LOGGING['loggers']['henslowe'] = {}
 LOGGING['loggers']['henslowe']['handlers'] = ['console']
 LOGGING['loggers']['henslowe']['level'] = logging.DEBUG
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
+        'AUTO_UPDATE': True,
+        'URLS': ['http://127.0.0.1:9200'],
+        'INDEX': 'henslowe_vagrant',
+        'TIMEOUT': 5,
+    }
+}

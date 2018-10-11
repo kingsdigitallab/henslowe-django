@@ -101,6 +101,7 @@ INSTALLED_APPS += [    # your project apps here
     'taggit',
     'modelcluster',
     'wagtail.search',
+    'cms'
 ]
 
 INTERNAL_IPS = ['127.0.0.1']
@@ -304,12 +305,3 @@ AUTH_LDAP_REQUIRE_GROUP = (
 )
 WAGTAIL_SITE_NAME = PROJECT_TITLE
 ITEMS_PER_PAGE = 10
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch5',
-        'AUTO_UPDATE': False,
-        'URLS': ['http://127.0.0.1:9200'],
-        'INDEX': 'henslowe_wagtail',
-        'TIMEOUT': 5,
-    }
-}

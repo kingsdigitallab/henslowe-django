@@ -28,6 +28,16 @@ LOGGING['loggers']['henslowe']['level'] = LOGGING_LEVEL
 
 SECRET_KEY = ''
 
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
+        'AUTO_UPDATE': True,
+        'URLS': ['http://127.0.0.1:9200'],
+        'INDEX': 'henslowe_dev',
+        'TIMEOUT': 5,
+    }
+}
+
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar
 # http://django-debug-toolbar.readthedocs.org/en/latest/

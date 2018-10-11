@@ -15,11 +15,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-    path('wagtail/', include('wagtail.admin.urls')),
-    path('documents/', include('wagtail.documents.urls')),
-    path('', include('wagtail.core.urls')),
-    path('search/', include('wagtail.search.urls')),
-
+    re_path('wagtail/', include('wagtail.admin.urls')),
+    re_path('documents/', include('wagtail.documents.urls')),
+    re_path('', include('wagtail.core.urls')),
 ]
 
 # -----------------------------------------------------------------------------
