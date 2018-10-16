@@ -5,7 +5,9 @@ from datetime import datetime as dt
 from lxml import etree
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
-from cms.models import HomePage, RichTextPage, Catalogue, CatalogueEntry
+from cms.models import (HomePage, RichTextPage,
+                        Catalogue, CatalogueEntry,
+                        Image)
 
 
 class Command(BaseCommand):
@@ -148,7 +150,126 @@ class Command(BaseCommand):
 
                     self._log('Importing: {}/{}'.format(directory, file))
                     xml_file = os.path.join(path, file)
-                    self._import_page(parent_page, CatalogueEntry, xml_file)
+                    self._import_entry(parent_page, CatalogueEntry, xml_file)
+
+    def _import_entry(self, parent, page_type, xml_file):
+        tree = etree.parse(xml_file)
+
+        # Title
+        title = tree.getroot().xpath(
+            'teiHeader/fileDesc/titleStmt/title')[0].text
+
+        # Subtitle
+        subtitle = None
+        subtitle_arr = tree.getroot().xpath(
+            "teiHeader/fileDesc/titleStmt/title[@type='sub']")
+        if len(subtitle_arr):
+            subtitle = subtitle_arr[0].text
+
+        # Body
+        html = self._transform(tree)
+        body = etree.tostring(html.getroot().xpath(
+            "//xhtml:div[@id='mainContent']",
+            namespaces=self.ns)[0], encoding="UTF-8").decode('utf-8')
+
+        page = page_type()
+        page.title = title
+        if subtitle:
+            page.subtitle = subtitle
+
+        page.body = json.dumps([
+            {'type': 'paragraph', 'value': body},
+        ])
+
+        parent.add_child(instance=page)
+        page.save()
+
+        # Import images
+        images = tree.getroot().xpath("//list/item")
+
+        for image in images:
+
+            if len(image.xpath('xref')):
+                xref = image.xpath('xref')[0]
+
+                image_from = xref.get('from')
+
+                self._log("Importing image: {}".format(image_from))
+
+                image_name = xref.text
+                image_text = etree.tostring(
+                    image, method="text", encoding="UTF-8").decode('utf-8')
+
+                # Some cleanup!
+                image_text = " ".join(image_text.split())
+
+                filename = ''
+                reference = page.title
+
+                if 'MSS' in image_from:
+                    if 'Article' in image_from:
+                        part1, part2, part3 = image_from.split('/')
+
+                        part1 = "%02d" % (int(part1.split('-')[1]), )
+                        part2 = part2.split('-')[1]
+
+                        reference = '{}, Article {}, {}'.format(
+                            reference, int(part2), part3)
+                        filename = '{}-{}-{}'.format(part1, part2, part3)
+
+                    elif 'Group' in image_from:
+                        part1, part2, part3 = image_from.split('/')
+
+                        part1 = "%02d" % (int(part1.split('-')[1]), )
+                        part2 = part2.split('-')[1]
+
+                        reference = '{}, Group {}, {}'.format(
+                            reference, int(part2), part3)
+
+                        filename = '{}-{}-{}'.format(part1, part2, part3)
+
+                    else:
+                        part1, part2 = image_from.split('/')
+
+                        part1 = "%02d" % (int(part1.split('-')[1]), )
+
+                        reference = '{}, {}'.format(
+                            reference, part2)
+
+                        filename = '{}-{}'.format(part1, part2)
+
+                elif 'Muniments' in image_from:
+                    part1, part2, part3 = image_from.split('/')
+
+                    part1 = "%02d" % (int(part1.split('-')[2]), )
+                    part2 = part2.split('-')[1]
+
+                    reference = '{}, Group {}, {}'.format(
+                        reference, int(part2), part3)
+
+                    filename = 'mun-{}-{}-{}'.format(part1, part2, part3)
+
+                elif 'Miscellaneous' in image_from:
+                    part1 = image_from.split('/')[1]
+
+                    reference = '{}, {}'.format(
+                        reference, part1)
+
+                    filename = 'Cartwright-{}'.format(part1)
+
+                filename = '{}.jp2'.format(filename)
+
+                # Lets do this!
+                i_page = Image()
+                i_page.title = image_name
+                i_page.subtitle = image_text
+                i_page.filename = filename
+                i_page.reference = reference
+
+                page.add_child(instance=i_page)
+                i_page.save()
+
+        return page
 
     def _import_page(self, parent, page_type, xml_file):
         tree = etree.parse(xml_file)
@@ -168,7 +289,7 @@ class Command(BaseCommand):
         html = self._transform(tree)
         body = etree.tostring(html.getroot().xpath(
             "//xhtml:div[@id='mainContent']",
-            namespaces=self.ns)[0]).decode('utf-8')
+            namespaces=self.ns)[0], encoding="UTF-8").decode('utf-8')
 
         page = page_type()
         page.title = title

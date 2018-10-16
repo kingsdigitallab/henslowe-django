@@ -122,6 +122,7 @@ class Image(Page, WithStreamField, WithTranscription):
 Image.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('subtitle', classname='full'),
+    FieldPanel('reference', classname='full'),
     FieldPanel('filename', classname='full'),
     StreamFieldPanel('body'),
     StreamFieldPanel('transcription'),
