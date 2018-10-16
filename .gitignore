@@ -63,3 +63,9 @@ local.py
 #local_*.py
 logs/
 static/
+
+
+# Private!
+private_data/
+
+.vagrant_provisioning/playbook.retry

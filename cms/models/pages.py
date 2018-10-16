@@ -31,6 +31,8 @@ def _paginate(request, items):
 
 
 class HomePage(Page, WithStreamField):
+    subtitle = models.TextField(
+        blank=True, null=True, help_text='Leave blank for none.')
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
@@ -43,6 +45,7 @@ class HomePage(Page, WithStreamField):
 
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
+    FieldPanel('subtitle', classname='full'),
     StreamFieldPanel('body'),
 ]
 

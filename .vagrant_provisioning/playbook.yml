@@ -39,6 +39,12 @@
     tags:
       - system
 
+  - name: Upgrade all packages to the latest version
+    apt:
+      upgrade: yes
+    tags:
+      - system
+
   - name: apt | install required system packages
     apt:
       pkg: '{{ item }}'
@@ -48,9 +54,12 @@
     tags:
       - system
 
-  - name: Upgrade all packages to the latest version
+  - name: apt | install elasticsearch
     apt:
-      upgrade: yes
+      pkg: '{{ item }}'
+      state: present
+      update_cache: yes
+    with_items: '{{ elastic_packages }}'
     tags:
       - system
 
