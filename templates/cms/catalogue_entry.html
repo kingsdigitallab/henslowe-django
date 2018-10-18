@@ -1,0 +1,33 @@
+{% extends "cms/base.html" %}
+{% load cms_tags wagtailcore_tags %}
+
+{% block main %}
+
+<section>
+    <div class="row">
+        <div class="small-3 columns">
+            {% get_site_root as site_root %}
+            {% sub_menu root=site_root current_page=self %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-9 columns">
+
+            {% for image in self.get_children %}
+            <dl>
+                <dt><a href="{% pageurl image %}">{{ image.title }}</a></dt>
+                <dd>{{ image.specific.subtitle }}</dd>
+            {% endfor %}
+
+            {% comment %}
+
+            Legacy content - do we need this? BM
+
+            {% include "cms/includes/streamfield.html" with blocks=self.body %}
+            {% endcomment %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

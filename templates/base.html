@@ -23,7 +23,11 @@
   </nav>
 
   <main>
-    <header><h2>{% block page_title %}{% endblock %}</h2></header>
+    <header>
+    <h2>{{ self.title }}</h2>
+    {% if self.subtitle %}<h3>{{ self.subtitle }}</h3>{% endif %}
+    </header>
+
 
     {% block main %}
     {% endblock %}
