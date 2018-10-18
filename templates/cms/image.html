@@ -23,7 +23,7 @@
             {% if self.get_next_siblings.live %}
             <a href="{% pageurl self.get_next_siblings.live.first %}">Next Image</a>
             {% endif %}
-            <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="http://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
+            <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
             
 
         </div>
