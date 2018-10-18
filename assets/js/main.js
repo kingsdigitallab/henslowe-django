@@ -9,7 +9,7 @@ function init_openseadragon()
 
         $.getJSON(info_url, function(data) {
             console.log(data);
-            
+
             OpenSeadragon({
             id:                 id,
             prefixUrl:          "/static/js/openseadragon/images/",
@@ -27,7 +27,7 @@ function init_openseadragon()
               "protocol": "http://iiif.io/api/image",
               "tiles": [{
                 "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
-                "width": 256
+                "width": 1024
               }]
             }]
         });
