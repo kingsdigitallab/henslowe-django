@@ -21,13 +21,13 @@ function init_openseadragon()
             tileSources:   [{
               "@context": "http://iiif.io/api/image/2/context.json",
               "@id": url,
-              "height": data['width'],
-              "width": data['height'],
+              "height": data['height'],
+              "width": data['width'],
               "profile": [ "http://iiif.io/api/image/2/level2.json" ],
               "protocol": "http://iiif.io/api/image",
               "tiles": [{
-                "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
-                "width": 1024
+                "scaleFactors": data['tiles'][0]['scaleFactors'],
+                "width": data['tiles'][0]['width']
               }]
             }]
         });
