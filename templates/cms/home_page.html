@@ -1,7 +1,10 @@
 {% extends "cms/base.html" %}
 {% load cms_tags %}
 
-{% block header %}{% endblock %}
+
+{% block meta_title %}Home{% endblock %}
+
+{% block page_title %}{{self.title}}{% endblock %}
 
 {% block main %}
 

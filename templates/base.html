@@ -23,14 +23,17 @@
   </nav>
 
   <main>
-    {% block title %}{% endblock %}
+    <header><h2>{% block page_title %}{% endblock %}</h2></header>
+
     {% block main %}
     {% endblock %}
   </main>
 
   <footer>
     {% block footer %}
+
     {% include 'includes/footer.html' %}
+
     {% endblock %}
   </footer>
 

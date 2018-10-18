@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from wagtail.core.models import Page
 
 register = template.Library()
 
@@ -54,8 +55,10 @@ def has_view_restrictions(page):
 @register.inclusion_tag('cms/tags/main_menu.html', takes_context=True)
 def main_menu(context, root, current_page=None):
     """Returns the main menu items, the children of the root page. Only live
-    pages that have the show_in_menus setting on are returned."""
-    menu_pages = root.get_children().live().in_menu()
+    pages that have the show_in_menus setting on are returned. The root page
+    is included in the list """
+    menu_pages = Page.objects.live()\
+        .descendant_of(root, inclusive=True).in_menu()
 
     root.active = (current_page.url == root.url
                    if current_page else False)
@@ -69,10 +72,13 @@ def main_menu(context, root, current_page=None):
 
 
 @register.inclusion_tag('cms/tags/sub_menu.html', takes_context=True)
-def sub_menu(context, root):
-    """Returns the sub menu items, the children of the root page. Only live
-    pages that have the show_in_menus setting on are returned."""
-    menu_pages = root.get_children().live().in_menu()
+def sub_menu(context, root, current_page):
+    """Returns the siblings/children of a page"""
+
+    if current_page.get_parent() == root:
+        menu_pages = current_page.get_children()
+    else:
+        menu_pages = current_page.get_siblings(inclusive=True)
 
     return {'request': context['request'], 'root': root,
             'menu_pages': menu_pages}
