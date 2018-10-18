@@ -1,6 +1,8 @@
 {% extends "cms/base.html" %}
 {% load cms_tags wagtailcore_tags %}
 
+{% block page_subtitle %}<h3>{{self.specific.reference}}: {{ self.subtitle }}</h3>{% endblock %}
+
 {% block main %}
 
 <section>
@@ -13,12 +15,7 @@
 
     <div class="row">
         <div class="small-9 columns">
-
-            {% for image in self.get_children %}
-            <dl>
-                <dt><a href="{% pageurl image %}">{{ image.title }}</a></dt>
-                <dd>{{ image.specific.subtitle }}</dd>
-            {% endfor %}
+            <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
 
         </div>
     </div>

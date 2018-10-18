@@ -24,8 +24,8 @@
 
   <main>
     <header>
-    <h2>{{ self.title }}</h2>
-    {% if self.subtitle %}<h3>{{ self.subtitle }}</h3>{% endif %}
+    {% block page_title %}<h2>{{ self.title }}</h2>{% endblock %}
+    {% block page_subtitle %}{% if self.subtitle %}<h3>{{ self.subtitle }}</h3>{% endif %}{% endblock %}
     </header>
 
 
@@ -43,7 +43,7 @@
 
   {% compress js %}
   <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
-
+  <script src="{% static 'js/openseadragon/openseadragon.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   {% endcompress %}
 
