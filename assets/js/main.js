@@ -8,7 +8,8 @@ function init_openseadragon()
         var info_url = $(this).attr('data-image-url') + '/info.json';
 
         $.getJSON(info_url, function(data) {
-
+            console.log(data);
+            
             OpenSeadragon({
             id:                 id,
             prefixUrl:          "/static/js/openseadragon/images/",
@@ -25,8 +26,8 @@ function init_openseadragon()
               "profile": [ "http://iiif.io/api/image/2/level2.json" ],
               "protocol": "http://iiif.io/api/image",
               "tiles": [{
-                "scaleFactors": data['tiles'][0]['scaleFactors'],
-                "width": data['tiles'][0]['width']
+                "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+                "width": 256
               }]
             }]
         });
