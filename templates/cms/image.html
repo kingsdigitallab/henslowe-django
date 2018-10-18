@@ -13,9 +13,18 @@
         </div>
     </div>
 
+
+
     <div class="row">
         <div class="small-9 columns">
+            {% if self.get_prev_siblings.live %}
+            <a href="{% pageurl self.get_prev_siblings.live.first %}">Previous Image</a>
+            {% endif %}
+            {% if self.get_next_siblings.live %}
+            <a href="{% pageurl self.get_next_siblings.live.first %}">Next Image</a>
+            {% endif %}
             <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
+            }
 
         </div>
     </div>
