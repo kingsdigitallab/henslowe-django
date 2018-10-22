@@ -19,7 +19,7 @@ SECRET_KEY = ''
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.elasticsearch6',
-        'AUTO_UPDATE': True,
+        'AUTO_UPDATE': False,
         'URLS': ['http://127.0.0.1:9200'],
         'INDEX': 'henslowe_liv',
         'TIMEOUT': 5,
