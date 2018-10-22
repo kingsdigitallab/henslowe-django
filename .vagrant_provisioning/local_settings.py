@@ -1,7 +1,7 @@
 from .base import *  # noqa
 
 DEBUG = True
-
+VAGRANT = True
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
 

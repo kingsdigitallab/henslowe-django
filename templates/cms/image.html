@@ -14,18 +14,44 @@
     </div>
 
 
-
     <div class="row">
         <div class="small-9 columns">
-            {% if self.get_prev_siblings.live %}
-            <a href="{% pageurl self.get_prev_siblings.live.first %}">Previous Image</a>
-            {% endif %}
-            {% if self.get_next_siblings.live %}
-            <a href="{% pageurl self.get_next_siblings.live.first %}">Next Image</a>
-            {% endif %}
-            <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
-            
+            {% with siblings=self.get_siblings.live %}
+            {% if siblings %}
 
+                {% with prev=self.get_prev_siblings.live.first %}
+                {% if prev %}
+                <a href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
+                {% endif %}
+                {% endwith %}
+
+                <select id="image_switcher">
+
+                    {% for page in siblings %}
+                    <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
+                    {% endfor %}
+
+                </select>
+
+                {% with next=self.get_next_siblings.live.first %}
+                {% if next %}
+                <a href="{% pageurl next %}">{{ next.title }} &raquo;</a>
+                {% endif %}
+                {% endwith %}
+
+            {% endif %}
+            {% endwith %}
+
+                {% comment %}
+                This allows the image viewer to work locally...
+                {% endcomment %}
+
+                {% if "VAGRANT"|settings_value %}
+                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
+
+                {% else %}
+                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
+                {% endif %}
         </div>
     </div>
 </section>

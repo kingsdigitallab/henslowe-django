@@ -82,3 +82,9 @@ def sub_menu(context, root, current_page):
 
     return {'request': context['request'], 'root': root,
             'menu_pages': menu_pages}
+
+
+# settings value
+@register.filter
+def settings_value(name):
+    return getattr(settings, name, None)
