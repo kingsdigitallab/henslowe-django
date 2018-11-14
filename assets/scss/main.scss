@@ -56,6 +56,14 @@ $secondary: #CFC8AF;
 
 
 /* General */
+* {
+ box-sizing:border-box; 
+}
+
+html, body {
+  height: 100%; 
+}
+
 body{
 	font-family: 'Muli', sans-serif;
 	margin:0;
@@ -74,6 +82,8 @@ body{
     font-family: 'Fjalla One', sans-serif;
     background: $black;
     padding-top: 1rem;
+    //position: fixed;
+    z-index: 1;
     .logo {
         position: relative;
         z-index: 0;
@@ -320,8 +330,53 @@ main{
 			text-decoration: underline;
 		}
 	}
-}
+	header{
+		h2{
+			background: $primary;
+			color: $white;
+			padding:0.5rem 2.3rem;
+			margin:0 -2rem;
+			text-shadow:1px 1px darken($black,40%);
+		}
+	}
+	.wrapper{
+		height:100%;
+		.secondary-nav{
+		  width:25%;
+		  padding:5px;
+		  float:left;
+				ul{
+					margin-left:-40px;
+					
+					li{
+						list-style-type: none;
+						font-family: 'Fjalla One', sans-serif;
+						padding:0.5rem;
+						font-size: 1.1rem;
+						display: block;
+						&:hover{
+								//color: $black;
+									//background: $black;
+									background: $primary;
+								a{
+									color:$secondary;
 
+								}
+						}
+						a{
+							text-decoration: none;
+							display: block;
+						}
+					}
+				}
+			}
+		.content{
+		  width:75%;
+		  float:left;
+		  padding:10px;
+			}
+	}
+}
 
 /*OSD Viewer */
 .osd-viewer
@@ -359,6 +414,8 @@ footer{
 	padding: 1rem;
     font-size: 0.8rem;
     background:$primary;
+    float:left;
+    width: 100%; 
     p{
     	color:$white;
     	a{

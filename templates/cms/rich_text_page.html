@@ -3,19 +3,14 @@
 
 {% block main %}
 
-<section>
-
-    <div class="row">
-        <div class="small-3 columns">
+<div class="wrapper">
+    <div class="secondary-nav">
             {% get_site_root as site_root %}
             {% sub_menu root=site_root current_page=self %}
-        </div>
     </div>
-    <div class="row">
-        <div class="small-9 columns">
+    <div class="content">
             {% include "cms/includes/streamfield.html" with blocks=self.body %}
-        </div>
     </div>
-</section>
+</div>
 
 {% endblock %}
