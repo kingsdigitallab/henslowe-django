@@ -11,6 +11,7 @@
 
   {% compress css %}
   <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/jquery-ui/jquery-ui.min.css' %}">  
   {% endcompress %}
 </head>
 <body>
@@ -43,7 +44,10 @@
 
   {% compress js %}
   <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'js/openseadragon/openseadragon.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'vendor/caman/dist/caman.full.min.js' %}"></script>
+  <script src="{% static 'vendor/openseadragon/openseadragon.min.js' %}"></script>
+  <script src="{% static 'vendor/openseadragon-filtering/openseadragon-filtering.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   {% endcompress %}
 
