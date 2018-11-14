@@ -2,7 +2,7 @@
 
 var osd_viewer;
 var caman = Caman;
-//caman.Store.put = function() {};
+caman.Store.put = function() {};
 
 function init_openseadragon()
 {
