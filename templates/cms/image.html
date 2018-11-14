@@ -54,6 +54,49 @@
                 {% endif %}
         </div>
     </div>
+
+    <div id="osd_modifiers">
+    
+        <div id="adjustments">
+            <div class="slider-wrapper">
+                <span class="label">Brightness</span>
+                <span id="brightness" class="slider" data-min="-255" data-max="255" data-step="1" data-default="0"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="label">Contrast</span>
+                <span id="contrast" class="slider"  data-min="0" data-max="4" data-step="0.1" data-default="1"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="label">Exposure</span>
+                <span id="exposure" class="slider"  data-min="-100" data-max="100" data-step="1" data-default="1"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="label">Gamma</span>
+                <span id="gamma" class="slider" data-min="0" data-max="5" data-step="0.1" data-default="1"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="label">Saturation</span>
+                <span id="saturation" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="label">Vibrance</span>
+                <span id="vibrance" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
+            </div>
+
+            <button id="greyscale" class="ui-button ui-widget ui-corner-all toggle">Greyscale</button>
+            <button id="invert" class="ui-button ui-widget ui-corner-all toggle">Invert Colours</button>
+            <button id="edges" class="ui-button ui-widget ui-corner-all toggle">Highlight Edges</button>
+            <button id="threshold" data-toggle="threshold-toggle" class="ui-button ui-widget ui-corner-all toggle">Threshold</button>
+            
+            <div class="slider-wrapper hidden" id="threshold-toggle">
+                <span class="label">Threshold Level</span>
+                <span id="thresholdlevel" class="slider" data-min="0" data-max="255" data-step="1" data-default="128"></span>
+            </div>
+        </div>
+        
+    
+    </div>
+
 </section>
 
 {% endblock %}

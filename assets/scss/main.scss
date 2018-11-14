@@ -329,6 +329,29 @@ main{
     height: 600px;
 }
 
+#osd_modifiers
+{
+    #adjustments
+    {
+        .slider-wrapper
+        {
+            .label
+            {
+                display: inline-block;
+                width: 100px;
+            }
+            .slider
+            {
+                display: inline-block;
+                width: 200px;
+            }
+        }
+    }
+    .hidden
+    {
+        display: none;
+    }
+}
 
 /* Footer */
 footer{
@@ -556,6 +579,7 @@ footer{
             text-align: center;
             li {
                 display: inline-block;
+
             }
         }
     }

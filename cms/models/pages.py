@@ -124,7 +124,7 @@ Image.content_panels = [
     FieldPanel('subtitle', classname='full'),
     FieldPanel('reference', classname='full'),
     FieldPanel('filename', classname='full'),
-    StreamFieldPanel('body'),
+    # StreamFieldPanel('body'),
     StreamFieldPanel('transcription'),
 ]
 
