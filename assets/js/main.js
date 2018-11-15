@@ -116,13 +116,39 @@ function init_openseadragon()
                 var vibrance = parseFloat($("#osd_modifiers #adjustments #vibrance").slider("option", "value"));
 
                 // These are standard ones:
-                processors.push(OpenSeadragon.Filters.BRIGHTNESS(brightness));
-                processors.push(OpenSeadragon.Filters.CONTRAST(contrast));
-                processors.push(OpenSeadragon.Filters.GAMMA(gamma));
-                processors.push(EXPOSURE(exposure));
-                processors.push(SATURATION(saturation));
-                processors.push(VIBRANCE(vibrance));
+                if(brightness != $('#brightness').attr('data-default'))
+                {
+                    processors.push(OpenSeadragon.Filters.BRIGHTNESS(brightness));
+                }
 
+                if(contrast != $('#contrast').attr('data-default'))
+                {
+                    processors.push(OpenSeadragon.Filters.CONTRAST(contrast));
+                }
+                
+
+                if(gamma != $('#gamma').attr('data-default'))
+                {
+                    processors.push(OpenSeadragon.Filters.GAMMA(gamma));
+                    
+                }
+
+                if(exposure != $('#exposure').attr('data-default'))
+                {
+                    processors.push(EXPOSURE(exposure));
+                    
+                }
+
+                if(saturation != $('#saturation').attr('data-default'))
+                {
+                    processors.push(SATURATION(saturation));
+                    
+                }
+
+                if(vibrance != $('#vibrance').attr('data-default'))
+                {
+                    processors.push(VIBRANCE(vibrance));
+                }
                 // These are buttons, only run if they need to:
                 if($('#greyscale').hasClass('ui-state-active'))
                 {
@@ -147,12 +173,11 @@ function init_openseadragon()
                     var threshold = parseFloat($("#osd_modifiers #adjustments #thresholdlevel").slider("option", "value"));
                     processors.push(OpenSeadragon.Filters.THRESHOLDING(threshold));
                 }
-
                 
-
                 osd_viewer.setFilterOptions({
                     filters: {
-                        processors: processors
+                        processors: processors,
+                        loadMode: 'async'
                     }
                 });
             }
@@ -184,7 +209,6 @@ function init_openseadragon()
             $("body").on("click", "#osd_modifiers #adjustments .toggle", function(event)
             {
                 $(this).toggleClass('ui-state-active');
-
                 if($(this).attr('data-toggle'))
                 {
                     if($(this).hasClass('ui-state-active'))
@@ -197,6 +221,22 @@ function init_openseadragon()
                 }
                 osd_update_filters();
             });
+
+            $("body").on("click", "#osd_modifiers #adjustments .reset", function(event)
+            {
+                $("#osd_modifiers #adjustments .toggle").removeClass('ui-state-active');
+                $("#osd_modifiers .hidden").slideUp();
+
+                $("#osd_modifiers #adjustments .slider").each(function() {
+                    // read initial values from markup and remove that
+                    var value = parseFloat($(this).attr('data-default'));
+                    $( this ).slider('value', value);
+                });
+                osd_update_filters();
+            });
+
+            
+
         }
     }
 }
