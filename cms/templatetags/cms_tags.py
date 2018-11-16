@@ -58,7 +58,7 @@ def main_menu(context, root, current_page=None):
     pages that have the show_in_menus setting on are returned. The root page
     is included in the list """
     menu_pages = Page.objects.live()\
-        .descendant_of(root, inclusive=True).in_menu()
+        .descendant_of(root, inclusive=False).in_menu()
 
     root.active = (current_page.url == root.url
                    if current_page else False)
@@ -79,6 +79,10 @@ def sub_menu(context, root, current_page):
         menu_pages = current_page.get_children()
     else:
         menu_pages = current_page.get_siblings(inclusive=True)
+
+    for page in menu_pages:
+        page.active = (current_page.url.startswith(page.url)
+                       if current_page else False)
 
     return {'request': context['request'], 'root': root,
             'menu_pages': menu_pages}

@@ -1,12 +1,22 @@
 {% load wagtailcore_tags cms_tags %}
 <ul class=" medium-horizontal vertical dropdown menu">
+  <li><a href="/">Home</a></li>
 
   {% for page in menu_pages %}
   <li {% if page.active %} class="is-active" {% endif %}><a href="{% pageurl page %}">{{ page.title }}</a></li>
   {% endfor %}
 
+          <li>
+            <form action="/search" method="get">
+                <input class="search expandright" id="searchright" type="search" name="q" {% if query_string %} value="{{query_string}}" {% endif %} placeholder="Search the site">
+                <label class="button searchbutton" for="searchright">Search</label>
+            </form>
+            </div>
+        </li>
+
   {% if request.user.is_authenticated %}
   {% if request.user.is_staff %}
+  
   <li><a href="/admin/">Admin Panel</a></li>
   {% endif %}
   <li><a href="/admin/logout/">Logout {{ request.user.first_name }}</a></li>
