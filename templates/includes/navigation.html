@@ -4,16 +4,7 @@
     </div>
     <a href="#nav" title="Show navigation">☰</a>
     <a class="hide-nav" href="#" title="Hide navigation">×</a>
-    <ul>
         {% get_site_root as site_root %}
 
         {% main_menu root=site_root current_page=self %}
-        <li>
-            <form action="/search" method="get">
-                <input class="search expandright" id="searchright" type="search" name="q" {% if query_string %} value="{{query_string}}" {% endif %} placeholder="Search the site">
-                <label class="button searchbutton" for="searchright">Search</label>
-            </form>
-            </div>
-        </li>
-    </ul>
 
