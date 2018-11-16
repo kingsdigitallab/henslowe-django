@@ -5,101 +5,115 @@
 
 {% block main %}
 
-<section>
-    <div class="row">
+
+    <!--<div class="row">
         <div class="small-3 columns">
             {% get_site_root as site_root %}
             {% sub_menu root=site_root current_page=self.get_parent %}
         </div>
-    </div>
+    </div>-->
+
+ 
+    <div class="osd-drawer">
+        <input type="checkbox" id="first-drawer" />
+        <label aria-label="Image Modifiers" class="first-label" for="first-drawer">
+        Image modifier
+        </label>
+        <input type="checkbox" id="second-drawer" />
+        <label aria-label="Filter list" class="second-label" for="second-drawer">
+            Transcript
+        </label>
+        <div class="first-list">
+            <div id="osd_modifiers">
+                <h2>Image Modifiers</h2>
+                <div id="adjustments">
+                    <div class="slider-wrapper">
+                        <span class="label">Brightness</span>
+                        <span id="brightness" class="slider" data-min="-255" data-max="255" data-step="1" data-default="0"></span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <span class="label">Contrast</span>
+                        <span id="contrast" class="slider"  data-min="0" data-max="4" data-step="0.1" data-default="1"></span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <span class="label">Exposure</span>
+                        <span id="exposure" class="slider"  data-min="-100" data-max="100" data-step="1" data-default="1"></span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <span class="label">Gamma</span>
+                        <span id="gamma" class="slider" data-min="0" data-max="5" data-step="0.1" data-default="1"></span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <span class="label">Saturation</span>
+                        <span id="saturation" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <span class="label">Vibrance</span>
+                        <span id="vibrance" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
+                    </div>
+
+                    <button id="reset" class="ui-button ui-widget ui-corner-all reset">Reset</button>
+                    <button id="greyscale" class="ui-button ui-widget ui-corner-all toggle">Greyscale</button>
+                    <button id="invert" class="ui-button ui-widget ui-corner-all toggle">Invert Colours</button>
+                    <button id="edges" class="ui-button ui-widget ui-corner-all toggle">Highlight Edges</button>
+                    <button id="threshold" data-toggle="threshold-toggle" class="ui-button ui-widget ui-corner-all toggle">Threshold</button>
+                    
 
 
-    <div class="row">
-        <div class="small-9 columns">
-            {% with siblings=self.get_siblings.live %}
-            {% if siblings %}
+                    <div class="slider-wrapper hidden" id="threshold-toggle">
+                        <span class="label">Threshold Level</span>
+                        <span id="thresholdlevel" class="slider" data-min="0" data-max="255" data-step="1" data-default="128"></span>
+                    </div>
+                </div>
+            </div><!-- end .osd_modifiers -->
+        </div><!-- end .filter-list -->
+        <div class="second-list">
+        Test
+        </div>
+          <div class="osd-image">
+        {% with siblings=self.get_siblings.live %}
+        {% if siblings %}
 
-                {% with prev=self.get_prev_siblings.live.first %}
-                {% if prev %}
-                <a href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
-                {% endif %}
-                {% endwith %}
-
-                <select id="image_switcher">
-
-                    {% for page in siblings %}
-                    <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
-                    {% endfor %}
-
-                </select>
-
-                {% with next=self.get_next_siblings.live.first %}
-                {% if next %}
-                <a href="{% pageurl next %}">{{ next.title }} &raquo;</a>
-                {% endif %}
-                {% endwith %}
-
+            {% with prev=self.get_prev_siblings.live.first %}
+            {% if prev %}
+            <a href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
             {% endif %}
             {% endwith %}
 
-                {% comment %}
-                This allows the image viewer to work locally...
-                {% endcomment %}
+            <select id="image_switcher">
 
-                {% if "VAGRANT"|settings_value %}
-                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
+                {% for page in siblings %}
+                <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
+                {% endfor %}
 
-                {% else %}
-                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
-                {% endif %}
-        </div>
-    </div>
+            </select>
 
-    <div id="osd_modifiers">
+            {% with next=self.get_next_siblings.live.first %}
+            {% if next %}
+            <a href="{% pageurl next %}">{{ next.title }} &raquo;</a>
+            {% endif %}
+            {% endwith %}
+
+        {% endif %}
+        {% endwith %}
+
+            {% comment %}
+            This allows the image viewer to work locally...
+            {% endcomment %}
+
+            {% if "VAGRANT"|settings_value %}
+                <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
+
+            {% else %}
+                <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
+            {% endif %}
+        </div><!-- end .osd-image -->
+    </div><!-- end .osd-drawer -->
+
+
+
+  
     
-        <div id="adjustments">
-            <div class="slider-wrapper">
-                <span class="label">Brightness</span>
-                <span id="brightness" class="slider" data-min="-255" data-max="255" data-step="1" data-default="0"></span>
-            </div>
-            <div class="slider-wrapper">
-                <span class="label">Contrast</span>
-                <span id="contrast" class="slider"  data-min="0" data-max="4" data-step="0.1" data-default="1"></span>
-            </div>
-            <div class="slider-wrapper">
-                <span class="label">Exposure</span>
-                <span id="exposure" class="slider"  data-min="-100" data-max="100" data-step="1" data-default="1"></span>
-            </div>
-            <div class="slider-wrapper">
-                <span class="label">Gamma</span>
-                <span id="gamma" class="slider" data-min="0" data-max="5" data-step="0.1" data-default="1"></span>
-            </div>
-            <div class="slider-wrapper">
-                <span class="label">Saturation</span>
-                <span id="saturation" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
-            </div>
-            <div class="slider-wrapper">
-                <span class="label">Vibrance</span>
-                <span id="vibrance" class="slider" data-min="-100" data-max="100" data-step="1" data-default="0"></span>
-            </div>
 
-            <button id="reset" class="ui-button ui-widget ui-corner-all reset">Reset</button>
-            <button id="greyscale" class="ui-button ui-widget ui-corner-all toggle">Greyscale</button>
-            <button id="invert" class="ui-button ui-widget ui-corner-all toggle">Invert Colours</button>
-            <button id="edges" class="ui-button ui-widget ui-corner-all toggle">Highlight Edges</button>
-            <button id="threshold" data-toggle="threshold-toggle" class="ui-button ui-widget ui-corner-all toggle">Threshold</button>
-            
-
-
-            <div class="slider-wrapper hidden" id="threshold-toggle">
-                <span class="label">Threshold Level</span>
-                <span id="thresholdlevel" class="slider" data-min="0" data-max="255" data-step="1" data-default="128"></span>
-            </div>
-        </div>
-        
-    
-    </div>
-
-</section>
 
 {% endblock %}
