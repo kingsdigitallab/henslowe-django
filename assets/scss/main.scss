@@ -113,7 +113,7 @@ body{
         position: relative;
         list-style-type: none;
         display: inline-block;
-		margin: 1rem 2%;
+		margin: 0.5rem 2%;
 		font-size:1rem;
         a {
             display: block;
@@ -123,12 +123,7 @@ body{
             border-bottom:1px solid $black;
             border-top:1px solid $black;
             &:hover{
-            	color:darken($white,25%);
-            }
-            &:active{
-            	color:$white;
-            	border-bottom:1px solid $white;
-            	border-top:1px solid $white;
+            	color:darken($white,45%);
             }
         }
     }
@@ -155,26 +150,30 @@ body{
     >li {
         height: 100%;
         display: inline-block;
-
+        		-moz-transition:all 200ms ease-in;
+		-webkit-transition:all 200ms ease-in;
+		-o-transition:all 200ms ease-in;
+		transition:all 200ms ease-in;
         &.is-active {
-            border-bottom: 0.2rem solid $black;
+            color:$white;
+            border-bottom:1px solid $white;
+            border-top:1px solid $white;
+            &:hover{
+            	border-bottom:1px solid darken($white,45%);
+            	border-top:1px solid darken($white,45%);
+
+            }
         }
 
         >a {
             height: 100%;
             font-size: 1.2em;
-            line-height: 3em;
+            line-height: 2.5;
             text-align: center;
             padding: 0 1rem;
             transition: 0.8s ease;
-            background-color: rgba(255, 255, 255, 0);
         }
     }
-}
-
-#nav>ul>li:hover>a,
-#nav>ul:not(:hover)>a {
-    background-color: rgba(255, 255, 255, 0.2);
 }
 
 //second level
@@ -194,17 +193,10 @@ body{
     }
 }
 
-#nav li ul li a:hover,
-#nav li ul:not(:hover) li.is-active a {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: $black;
-}
-
 #nav li:hover ul {
     display: block;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.4);
     transition: 0.6s ease;
     opacity: 1;
 
@@ -356,25 +348,38 @@ main{
 		  float:left;
 				ul{
 					margin-left:-40px;
-					
 					li{
 						list-style-type: none;
 						font-family: 'Fjalla One', sans-serif;
 						padding:0.3rem;
 						font-size: 1.1rem;
 						display: block;
+
 						&:hover{
 							a{
 								color:darken($secondary,15%);
 								border-top:1px solid $white;
 								border-bottom:1px solid $white;
+								-moz-transition:all 200ms ease-in;
+								-webkit-transition:all 200ms ease-in;
+								-o-transition:all 200ms ease-in;
+								transition:all 200ms ease-in;
 							}
 						}
-						&:active{
+						&.is-active{
 							a{
 								color:$black;
 								border-top:1px solid $black;
 								border-bottom:1px solid $black;
+								&:hover{
+									color:darken($secondary,15%);
+									border-top:1px solid darken($secondary,15%);
+									border-bottom:1px solid darken($secondary,15%);
+									-moz-transition:all 200ms ease-in;
+									-webkit-transition:all 200ms ease-in;
+									-o-transition:all 200ms ease-in;
+									transition:all 200ms ease-in;
+								}
 							}
 						}
 						a{
