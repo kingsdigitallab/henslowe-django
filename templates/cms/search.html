@@ -37,7 +37,11 @@
             </span>
         </div>
     {% else %}
-        <p>No results found for <i>{{ q }}</i>.</p>
+        {% if q %}
+            <p>No results found for <i>{{ q }}</i>.</p>
+        {% else %}
+            <p>No search term supplied.</p>
+        {% endif %}
     {% endif %}
     </div>
 </div>
