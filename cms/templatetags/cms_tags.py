@@ -67,8 +67,13 @@ def main_menu(context, root, current_page=None):
         page.active = (current_page.url.startswith(page.url)
                        if current_page else False)
 
-    return {'request': context['request'], 'root': root,
-            'current_page': current_page, 'menu_pages': menu_pages}
+    tag_c = {'request': context['request'], 'root': root,
+             'current_page': current_page, 'menu_pages': menu_pages}
+
+    if 'q' in context:
+        tag_c['q'] = context['q']
+
+    return tag_c
 
 
 @register.inclusion_tag('cms/tags/sub_menu.html', takes_context=True)

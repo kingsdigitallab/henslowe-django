@@ -17,6 +17,7 @@ urlpatterns = [
 
     re_path('wagtail/', include('wagtail.admin.urls')),
     re_path('documents/', include('wagtail.documents.urls')),
+    re_path('', include('cms.urls')),
     re_path('', include('wagtail.core.urls')),
 ]
 

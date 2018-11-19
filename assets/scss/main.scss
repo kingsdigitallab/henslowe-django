@@ -234,6 +234,7 @@ body{
     -moz-transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s;
     -o-transition-duration: 0.4s;
+    
 }
 
 .search:focus+.searchbutton {
@@ -336,6 +337,11 @@ main{
 		h2{
 			background: $black;
 			color: $white;
+			padding:0.5rem 2.3rem 0.6rem 2.3rem;
+			margin:0;
+        }
+        h3{
+			
 			padding:0.5rem 2.3rem 0.6rem 2.3rem;
 			margin:0;
 		}
