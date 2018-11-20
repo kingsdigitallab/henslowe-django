@@ -113,8 +113,8 @@ body{
         position: relative;
         list-style-type: none;
         display: inline-block;
-		margin: 0.5rem 2%;
-		font-size:1rem;
+		margin: 0.5rem 0.3rem;
+		font-size:0.9rem;
         a {
             display: block;
             text-decoration: none;
@@ -170,7 +170,7 @@ body{
             font-size: 1.2em;
             line-height: 2.5;
             text-align: center;
-            padding: 0 1rem;
+            padding: 0 0.5rem;
             transition: 0.8s ease;
         }
     }
@@ -411,13 +411,17 @@ main{
 
 
 
-/**** SEARCH ****/
+/**** DRAWER ****/
 
 
   .osd-drawer{
     display: inline-block;
     text-align:left;
     width:100%;
+    .fa, .fab, .fal, .far, .fas{
+    	padding-top: 7px;
+		font-size: 1.8rem;
+    }
     /* First */
     input#first-drawer[type="checkbox"]{
       display:none;
@@ -465,7 +469,6 @@ input[type="checkbox"]:checked ~ section{
 	
 
     label.first-label{
-	    	    background:$secondary;
 	    width:42px;
 	    height:42px;
 	    line-height:42px;
@@ -511,7 +514,9 @@ input[type="checkbox"]:checked ~ section{
       -o-transition:all 200ms ease-in;
       transition:all 200ms ease-in;
       z-index:2;
-      background: $white;
+      background: $black;
+		padding: 1rem;
+		color: white;
       ul{
         width:250px;
         height:100%;
@@ -595,7 +600,6 @@ input[type="checkbox"]:checked ~ section{
     }
 
     label.second-label{
-	    background:$secondary;
 	    width:42px;
 	    height:42px;
 	    line-height:42px;
@@ -697,6 +701,31 @@ input[type="checkbox"]:checked ~ section{
 			width:calc(100% - 50px);
 		}
 }/* end #filter */
+
+/*** Tooltip ***/
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 42px;
+	position: absolute;
+	left: -30%;
+	top: 100%;
+	font-size: 0.7rem;
+	line-height: 1;
+	text-align: center;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 
 
 
