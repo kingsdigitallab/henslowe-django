@@ -430,12 +430,19 @@ main{
       margin:0;
     }
     input#first-drawer:checked + label.first-label:after {
-      content: "✕";
-      position: absolute;
-      top: 10px;
-      left: -220px;
-      color:white;
-      z-index:3;
+		line-height: 2;
+		content: "✕";
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: white;
+		background: black;
+		width: 22px;
+		z-index: 3;
+		height: 42px;
+		padding: 0 10px;
+		font-size: 1.7rem;
+		line-height: 2;
     }
     input#first-drawer[type="checkbox"]:checked ~ label.first-label{
       background:black;
@@ -572,11 +579,18 @@ input[type="checkbox"]:checked ~ section{
       margin:0;
     }
     input#second-drawer:checked + label.second-label:after {
-      content: "✕";
-      position: absolute;
-      top: 10px;
-      left: -220px;
-      color:white;
+		content: "✕";
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: white;
+		background: black;
+		width: 22px;
+		z-index: 3;
+		height: 42px;
+		padding: 0 10px;
+		font-size: 1.7rem;
+		line-height: 2;
     }
     input#second-drawer[type="checkbox"]:checked ~ label.second-label{
       background:black;
@@ -628,8 +642,12 @@ input[type="checkbox"]:checked ~ section{
       -webkit-transition:all 200ms ease-in;
       -o-transition:all 200ms ease-in;
       transition:all 200ms ease-in;
-      background: $white;
+      background: $black;
       z-index: 2;
+      color: white;
+	    overflow: scroll;
+	    background: $black;
+	    padding: 0 15px;
       ul{
         width:250px;
         height:100%;
@@ -750,7 +768,7 @@ footer{
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 885px) {
     body {
         margin: 0;
     }
@@ -765,7 +783,7 @@ footer{
     #nav {
         top: 0;
         z-index: 2;
-        background: rgba(0, 0, 0, 1);
+        background: $black;
         width: 100%;
         height: 53px;
 		position: fixed;
