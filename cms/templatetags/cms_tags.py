@@ -97,3 +97,8 @@ def sub_menu(context, root, current_page):
 @register.filter
 def settings_value(name):
     return getattr(settings, name, None)
+
+
+@register.filter
+def get_breadcrumb_pages(page):
+    return page.get_ancestors(False)[1:]

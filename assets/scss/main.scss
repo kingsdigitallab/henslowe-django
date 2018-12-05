@@ -337,15 +337,37 @@ main{
 		h2{
 			background: $black;
 			color: $white;
-			padding:0.5rem 2.3rem 0.6rem 2.3rem;
+			padding:0.4rem 2.3rem 0.6rem 2.3rem;
 			margin:0;
         }
         h3{
 			
-			padding:0.5rem 2.3rem 0.6rem 2.3rem;
+			padding:0.6rem 2.3rem 0.6rem 2.3rem;
 			margin:0;
 		}
-	}
+    }
+    
+    /* Breadcrumbs */
+    .breadcrumbs
+    {
+        background: $black;
+        display: block; 
+        list-style: none;
+        margin: 0;
+        padding:0.5rem 2.3rem 0 2.3rem;
+
+        li
+        {
+            display: inline-block;
+            font-family: 'Muli', sans-serif;
+            &::after
+            {
+                color: $primary;
+                content: ">";
+                padding: 0 0 0 0.4rem;
+            }
+        }
+    }
 	.wrapper{
 		height:100%;
 		.secondary-nav{
