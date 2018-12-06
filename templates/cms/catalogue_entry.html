@@ -13,7 +13,7 @@
             {% for image in self.get_children %}
             <dl>
                 <dt><a href="{% pageurl image %}">{{ image.title }}</a></dt>
-                <dd>{{ image.specific.subtitle }}</dd>
+                <dd>{{image.specific.reference}}: {{ image.specific.subtitle }}</dd>
             {% endfor %}
 
             {% comment %}
