@@ -1,15 +1,21 @@
 {% load wagtailcore_tags cms_tags %}
 
-{% with self|get_breadcrumb_pages as pages %}
-{% if pages %}
-<ul class="breadcrumbs">
-    {% for page in pages %}
-        {% if forloop.first %}
-            <li><a href="/">Home</a></li>
-        {% else %}
-            <li><a href={% pageurl page %}>{{ page.title }}</a></li>
-        {% endif %}
-    {% endfor %}
-</ul>
+{% if request.path == "/search/" %}
+    <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+    </ul>
+{% else %}
+    {% with self|get_breadcrumb_pages as pages %}
+    {% if pages %}
+    <ul class="breadcrumbs">
+        {% for page in pages %}
+            {% if forloop.first %}
+                <li><a href="/">Home</a></li>
+            {% else %}
+                <li><a href={% pageurl page %}>{{ page.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 {% endif %}
-{% endwith %}

@@ -20,21 +20,24 @@
         </ul>
 
         <div class="pagination">
-            <span class="step-links">
                 {% if results.has_previous %}
-                    <a href="?q={{q}}&amp;page=1">&laquo; first</a>
+                <span class="prev">
+                    <a href="?q={{q}}&amp;page=1">&laquo; first</a> / 
                     <a href="?q={{q}}&amp;page={{ results.previous_page_number }}">previous</a>
+                </span>
                 {% endif %}
 
                 <span class="current">
                     Page {{ results.number }} of {{ results.paginator.num_pages }}.
                 </span>
 
+                
                 {% if results.has_next %}
-                    <a href="?q={{q}}&amp;page={{ results.next_page_number }}">next</a>
+                <span class="next">
+                    <a href="?q={{q}}&amp;page={{ results.next_page_number }}">next</a> / 
                     <a href="?q={{q}}&amp;page={{ results.paginator.num_pages }}">last &raquo;</a>
+                </span>
                 {% endif %}
-            </span>
         </div>
     {% else %}
         {% if q %}
