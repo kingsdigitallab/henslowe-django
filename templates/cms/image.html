@@ -17,12 +17,14 @@
     <div class="osd-drawer">
         <input type="checkbox" id="first-drawer" />
         <label aria-label="Image Modifiers" class="first-label" for="first-drawer">
-        Image modifier
+        <i class="fas fa-wrench"></i>
         </label>
+        {% if page.transcription %}
         <input type="checkbox" id="second-drawer" />
         <label aria-label="Filter list" class="second-label" for="second-drawer">
-            Transcript
+         <i class="far fa-file-alt"></i>
         </label>
+        {% endif %}
         <div class="first-list">
             <div id="osd_modifiers">
                 <h2>Image Modifiers</h2>
@@ -67,36 +69,43 @@
                 </div>
             </div><!-- end .osd_modifiers -->
         </div><!-- end .filter-list -->
+        
+        {% if page.transcription %}
         <div class="second-list">
-        Test
+             <h2>Transcription</h2>
+            {{ page.transcription}}
         </div>
-          <div class="osd-image">
-        {% with siblings=self.get_siblings.live %}
-        {% if siblings %}
-
-            {% with prev=self.get_prev_siblings.live.first %}
-            {% if prev %}
-            <a href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
-            {% endif %}
-            {% endwith %}
-
-            <select id="image_switcher">
-
-                {% for page in siblings %}
-                <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
-                {% endfor %}
-
-            </select>
-
-            {% with next=self.get_next_siblings.live.first %}
-            {% if next %}
-            <a href="{% pageurl next %}">{{ next.title }} &raquo;</a>
-            {% endif %}
-            {% endwith %}
-
         {% endif %}
-        {% endwith %}
+          <div class="osd-image">
+          <div class="osd-switcher">
+            {% with siblings=self.get_siblings.live %}
+            {% if siblings %}
 
+                {% with prev=self.get_prev_siblings.live.first %}
+                {% if prev %}
+                <a class="prev" href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
+                {% endif %}
+                {% endwith %}
+
+                <div class="select-dropdown">
+                    <select id="image_switcher">
+
+                        {% for page in siblings %}
+                        <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                {% with next=self.get_next_siblings.live.first %}
+                {% if next %}
+                <a class="next" href="{% pageurl next %}">{{ next.title }} &raquo;</a>
+                {% endif %}
+                {% endwith %}
+
+            {% endif %}
+            {% endwith %}
+            </div>
             {% comment %}
             This allows the image viewer to work locally...
             {% endcomment %}
