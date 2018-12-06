@@ -139,8 +139,8 @@ dl
         position: relative;
         list-style-type: none;
         display: inline-block;
-		margin: 0.5rem 2%;
-		font-size:1rem;
+		margin: 0.5rem 0.3rem;
+		font-size:0.9rem;
         a {
             display: block;
             text-decoration: none;
@@ -196,7 +196,7 @@ dl
             font-size: 1.2em;
             line-height: 2.5;
             text-align: center;
-            padding: 0 1rem;
+            padding: 0 0.5rem;
             transition: 0.8s ease;
         }
     }
@@ -498,13 +498,17 @@ main{
 
 
 
-/**** SEARCH ****/
+/**** DRAWER ****/
 
 
   .osd-drawer{
     display: inline-block;
     text-align:left;
     width:100%;
+    .fa, .fab, .fal, .far, .fas{
+    	padding-top: 7px;
+		font-size: 1.8rem;
+    }
     /* First */
     input#first-drawer[type="checkbox"]{
       display:none;
@@ -514,12 +518,19 @@ main{
     }
 
     input#first-drawer:checked + label.first-label:after {
-      content: "✕";
-      position: absolute;
-      top: 10px;
-      left: -220px;
-      color:white;
-      z-index:3;
+		line-height: 2;
+		content: "✕";
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: white;
+		background: black;
+		width: 22px;
+		z-index: 3;
+		height: 42px;
+		padding: 0 10px;
+		font-size: 1.7rem;
+		line-height: 2;
     }
     input#first-drawer[type="checkbox"]:checked ~ label.first-label{
       background:black;
@@ -550,17 +561,9 @@ input[type="checkbox"]:checked ~ section{
     transform:translate3d(260px, 0, 0);
  
 }
-    label
-    {
-        i
-        {
-            color: #ffffff;
-            line-height: 42px;
-        }
-    }
+    
 
     label.first-label{
-	    	    background:$secondary;
 	    width:42px;
 	    height:42px;
 	    line-height:42px;
@@ -607,9 +610,10 @@ input[type="checkbox"]:checked ~ section{
       -o-transition:all 200ms ease-in;
       transition:all 200ms ease-in;
       z-index:2;
-      background: $white;
-      overflow: scroll;
-      border-left: 2px solid $black;
+
+      background: $black;
+		padding: 0 15px 15px 15px;
+		color: white;
       ul{
         width:250px;
         height:100%;
@@ -672,11 +676,18 @@ input[type="checkbox"]:checked ~ section{
       margin:0;
     }
     input#second-drawer:checked + label.second-label:after {
-      content: "✕";
-      position: absolute;
-      top: 10px;
-      left: -220px;
-      color:white;
+		content: "✕";
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: white;
+		background: black;
+		width: 22px;
+		z-index: 3;
+		height: 42px;
+		padding: 0 10px;
+		font-size: 1.7rem;
+		line-height: 2;
     }
     input#second-drawer[type="checkbox"]:checked ~ label.second-label{
       background:black;
@@ -700,7 +711,6 @@ input[type="checkbox"]:checked ~ section{
     }
 
     label.second-label{
-	    background:$secondary;
 	    width:42px;
 	    height:42px;
 	    line-height:42px;
@@ -729,11 +739,12 @@ input[type="checkbox"]:checked ~ section{
       -webkit-transition:all 200ms ease-in;
       -o-transition:all 200ms ease-in;
       transition:all 200ms ease-in;
-      background: $white;
+      background: $black;
       z-index: 2;
-      padding: 0 10px 10px 10px;
-      overflow: scroll;
-      border-left: 2px solid $black;
+      color: white;
+        overflow: scroll;
+        background: $black;
+        padding: 0 15px 15px 15px;
       ul{
         width:250px;
         height:100%;
@@ -870,6 +881,31 @@ input[type="checkbox"]:checked ~ section{
         }
 }/* end #filter */
 
+/*** Tooltip ***/
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 42px;
+	position: absolute;
+	left: -30%;
+	top: 100%;
+	font-size: 0.7rem;
+	line-height: 1;
+	text-align: center;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 
 
 
@@ -894,7 +930,7 @@ footer{
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 885px) {
     body {
         margin: 0;
     }
@@ -909,11 +945,11 @@ footer{
     #nav {
         top: 0;
         z-index: 2;
-        background: rgba(0, 0, 0, 1);
+        background: $black;
         width: 100%;
-        height: 43px;
-        position: fixed;
-        padding: 0.5rem 0;
+        height: 53px;
+		position: fixed;
+		padding: 0.3rem 0;
 
         .logo {
             position: relative;
@@ -975,7 +1011,7 @@ footer{
             >a {
                 height: auto;
                 text-align: left;
-                padding: 1rem;
+                padding: 0.3rem 1rem;
 
                 transition: none;
                 background-color: rgba(255, 255, 255, 0);
@@ -987,7 +1023,8 @@ footer{
         display: block;
         background-color: rgba(0, 0, 0, 0.8);
         transition: 1s ease;
-        top: -800%;
+        top: -1000%;
+		right: 0;
     }
 
     #nav:target>ul {
@@ -995,6 +1032,7 @@ footer{
         background-color: rgba(0, 0, 0, 0.8);
         transition: 1s ease;
         top: 53px;
+        right: 0;
     }
 
     #nav>ul>li:not(:last-child)>a {}
