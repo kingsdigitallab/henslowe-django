@@ -10,11 +10,24 @@
             {% sub_menu root=site_root current_page=self %}
     </div>
     <div class="content">
-            {% for image in self.get_children %}
             <dl>
-                <dt><a href="{% pageurl image %}">{{ image.title }}</a></dt>
-                <dd>{{image.specific.reference}}: {{ image.specific.subtitle }}</dd>
+
+            {% for image in self.get_children %}
+                <dt>
+                
+                <a href="{% pageurl image %}">{{ image.title }}</a>
+                </dt>
+                <dd>
+                 {% if "VAGRANT"|settings_value %}
+                    <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{image.specific.filename}}/full/,100/0/default.jpg">
+                {% else %}
+                    <img src="/images/{{image.specific.filename}}/full/,100/0/default.jpg">
+                {% endif %}
+                <span>{{image.specific.reference}}: {{ image.specific.subtitle }}<span>
+                   
+                </dd>
             {% endfor %}
+            </dl>
 
             {% comment %}
 
