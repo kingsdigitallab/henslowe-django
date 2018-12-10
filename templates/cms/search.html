@@ -14,8 +14,10 @@
     {% if results.paginator.count %}
 
         <ul class="search-results">
-            {% for result in results %}
-            <li><a href="{% pageurl result %}">{% if result.specific.subtitle %}{{ result.specific.subtitle }}{% else %}{{ result.title }}{% endif %}</a></li>
+            {% for result in results_qs %}
+            <li><a href="">{{result.0.specific.subtitle}} {% if result.0.specific.subtitle %}{{ result.0.specific.subtitle }}{% else %}{{ result.0.title }}{% endif %}</a>
+            <p>{{result.1|safe}}</p>
+            </li>
             {% endfor %}
         </ul>
 

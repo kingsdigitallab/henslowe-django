@@ -28,5 +28,6 @@ class SearchView(TemplateView):
 
             context['q'] = q
             context['results'] = results
-
+            context['results_qs'] = results_qs[results.start_index(
+            ) - 1:(results.start_index() - 1) + settings.ITEMS_PER_PAGE]
         return context
