@@ -94,7 +94,7 @@ def sub_menu(context, root, current_page):
 
 
 # settings value
-@register.filter
+@register.filterfl
 def settings_value(name):
     return getattr(settings, name, None)
 
@@ -102,3 +102,28 @@ def settings_value(name):
 @register.filter
 def get_breadcrumb_pages(page):
     return page.get_ancestors(False)[1:]
+
+
+@register.filter
+def keeptags(value, tags):
+    """
+    Strips all [X]HTML tags except the space seperated list of tags
+    from the output.
+
+    Usage: keeptags:"strong em ul li"
+    """
+    import re
+    from django.utils.html import strip_tags, escape
+    tags = [re.escape(tag) for tag in tags.split()]
+    tags_re = '(%s)' % '|'.join(tags)
+    singletag_re = re.compile(r'<(%s\s*/?)>' % tags_re)  # noqa
+    starttag_re = re.compile(r'<(%s)(\s+[^>]+)>' % tags_re)  # noqa
+    endtag_re = re.compile(r'<(/%s)>' % tags_re)  # noqa
+    value = singletag_re.sub('##~~~\g<1>~~~##', value)  # noqa
+    value = starttag_re.sub('##~~~\g<1>\g<3>~~~##', value)  # noqa
+    value = endtag_re.sub('##~~~\g<1>~~~##', value)  # noqa
+    value = strip_tags(value)
+    value = escape(value)
+    recreate_re = re.compile('##~~~([^~]+)~~~##')  # noqa
+    value = recreate_re.sub('<\g<1>>', value)  # noqa
+    return value

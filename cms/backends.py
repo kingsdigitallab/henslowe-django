@@ -49,8 +49,10 @@ class HighlighterSearchQueryCompiler(Elasticsearch5SearchQueryCompiler):
         inner_query = self.get_inner_query()
 
         return {
-            "match_phrase": {
-                "cms_image__subtitle": inner_query['multi_match']['query']
+            "multi_match": {
+                "fields": ["cms_image__subtitle", "cms_image__transcription",
+                           "title", "cms_richtextpage__body"],
+                "query": inner_query['multi_match']['query']
             }
         }
 
@@ -61,10 +63,14 @@ class HighlighterSearchResults(Elasticsearch5SearchResults):
 
         if not for_count:
             body['highlight'] = {
-                "type": "unified",
+                "type": "plain",
                 "number_of_fragments": 3,
+                "fragment_size": 500,
                 "fields": {
-                    "cms_image__subtitle": {}
+                    "cms_image__subtitle": {},
+                    "title": {},
+                    "cms_richtextpage__body": {},
+                    "cms_image__transcription": {},
                 }
             }
         return body
@@ -114,7 +120,8 @@ class HighlighterSearchResults(Elasticsearch5SearchResults):
 
         return [(
                 results[str(pk)],
-                highlights.get(str(pk))['cms_image__subtitle'][0]
+                highlights.get(str(pk))[list(
+                    highlights.get(str(pk)).keys())[0]][0]
                 ) for pk in pks if results[str(pk)]]
 
 

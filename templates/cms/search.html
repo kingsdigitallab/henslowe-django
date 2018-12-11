@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags cms_tags %}
 
 {% block meta_title %}Search Results{% endblock %}
 {% block page_title %}<h2>Search Results {% if q %} for <i>{{ q }}</i> {% endif %}</h2>{% endblock %}
@@ -15,8 +15,8 @@
 
         <ul class="search-results">
             {% for result in results_qs %}
-            <li><a href="">{{result.0.specific.subtitle}} {% if result.0.specific.subtitle %}{{ result.0.specific.subtitle }}{% else %}{{ result.0.title }}{% endif %}</a>
-            <p>{{result.1|safe}}</p>
+            <li><a href="{{ result.0.url }}">{{ result.0.title }}</a>
+            <p>{{result.1|keeptags:"em"|safe}}</p>
             </li>
             {% endfor %}
         </ul>
