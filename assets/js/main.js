@@ -11,14 +11,16 @@ function init_highlight_words()
     var highlight = url.searchParams.get("highlight");
 
     if(highlight != undefined)
-    {
+    {        
+        highlight = highlight.split(/[^A-Za-z0-9]/);
         var html = $(".content").html();
-
-        highlight = highlight.split(" ");
         for(var i = 0; i < highlight.length; i++)
-        {
-            var re = new RegExp('\\b' + highlight[i] + '\\b', "g")
-            html = html.replace(re, "<span class=\"highlight\">" + highlight[i] + "</span>");
+        {  
+            if (highlight[i] != "")
+            {
+                var re = new RegExp('\\b' + highlight[i] + '\\b', "g");
+                html = html.replace(re, "<span class=\"highlight\">" + highlight[i] + "</span>");
+            }
         }
         $(".content").html(html);
     }
