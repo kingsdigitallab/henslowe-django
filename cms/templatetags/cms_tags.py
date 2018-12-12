@@ -94,7 +94,7 @@ def sub_menu(context, root, current_page):
 
 
 # settings value
-@register.filterfl
+@register.filter
 def settings_value(name):
     return getattr(settings, name, None)
 
