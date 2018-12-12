@@ -506,11 +506,17 @@ main{
 					}
 				}
 			}
-		.content{
+        .content
+        {
 		  width:75%;
 		  float:left;
-		  padding:10px;
-			}
+          padding:10px;
+          
+          .highlight
+          {
+              background: rgba(186, 178, 148, 0.4);
+          }
+		}
 	}
 }
 

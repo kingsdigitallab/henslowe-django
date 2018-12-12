@@ -4,6 +4,27 @@ var osd_viewer;
 var caman = Caman;
 caman.Store.put = function() {};
 
+// Highlight terms on a page
+function init_highlight_words()
+{
+    var url = new URL(window.location.href);
+    var highlight = url.searchParams.get("highlight");
+
+    if(highlight != undefined)
+    {
+        var html = $(".content").html();
+
+        highlight = highlight.split(" ");
+        for(var i = 0; i < highlight.length; i++)
+        {
+            var re = new RegExp('\\b' + highlight[i] + '\\b', "g")
+            html = html.replace(re, "<span class=\"highlight\">" + highlight[i] + "</span>");
+        }
+        $(".content").html(html);
+    }
+}
+
+
 function init_openseadragon()
 {
     if($('.osd-viewer').length)
@@ -270,4 +291,5 @@ $(function() {
     init_openseadragon();
     init_page_selector();
     init_search_button();
+    init_highlight_words();
 });

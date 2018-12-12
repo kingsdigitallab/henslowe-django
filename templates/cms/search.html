@@ -15,7 +15,7 @@
 
         <ul class="search-results">
             {% for result in results_qs %}
-            <li><a href="{{ result.0.url }}">{{ result.0.title }}</a>
+            <li><a href="{{ result.0.url }}?highlight={{q}}">{{ result.0.title }}</a>
             <p>{{result.1|keeptags:"em"|safe}}</p>
             </li>
             {% endfor %}
