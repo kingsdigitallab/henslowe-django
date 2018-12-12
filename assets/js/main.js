@@ -254,7 +254,17 @@ function init_page_selector()
     }
 }
 
+// Enables the search button
+function init_search_button()
+{
+    $('body').on('click', '.searchbutton', function(event)
+    {
+        $(this).parent().submit();
+    });
+}
+
 $(function() {
     init_openseadragon();
     init_page_selector();
+    init_search_button();
 });
