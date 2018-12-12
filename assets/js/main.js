@@ -259,7 +259,10 @@ function init_search_button()
 {
     $('body').on('click', '.searchbutton', function(event)
     {
-        $(this).parent().submit();
+        if($('#searchright').val() != "")
+        {
+            $(this).parent().submit();
+        }
     });
 }
 
