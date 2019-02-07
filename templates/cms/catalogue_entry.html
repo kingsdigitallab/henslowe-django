@@ -11,22 +11,28 @@
     </div>
     <div class="content">
             <dl>
-
+                
             {% for image in self.get_children %}
+            <a href="{% pageurl image %}">
+            <div class="card">
                 <dt>
                 
-                <a href="{% pageurl image %}">{{ image.title }}</a>
-                </dt>
-                <dd>
-                 {% if "VAGRANT"|settings_value %}
+                <h4>{{ image.title }}</h4>
+                                 {% if "VAGRANT"|settings_value %}
                     <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{image.specific.filename}}/full/,100/0/default.jpg">
                 {% else %}
                     <img src="/images/{{image.specific.filename}}/full/,100/0/default.jpg">
                 {% endif %}
+                </dt>
+                <dd>
+
                 <span>{{image.specific.reference}}: {{ image.specific.subtitle }}<span>
                    
                 </dd>
+                </div>
+                </a>
             {% endfor %}
+                
             </dl>
 
             {% comment %}

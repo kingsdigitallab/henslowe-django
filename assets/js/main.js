@@ -60,6 +60,10 @@ function init_openseadragon()
                     }]
                     }]
                 });
+                
+viewer.addHandler("page", function (data) {
+    document.getElementById("currentpage").innerHTML = ( data.page + 1 ) + " of 3";
+});
             });
         });
 

@@ -4,38 +4,27 @@
 {% block page_subtitle %}<h3>{{self.specific.reference}}: {{ self.subtitle }}</h3>{% endblock %}
 
 {% block main %}
-
-
-    <!--<div class="row">
-        <div class="small-3 columns">
-            {% get_site_root as site_root %}
-            {% sub_menu root=site_root current_page=self.get_parent %}
-        </div>
-    </div>-->
-
  
     <div class="osd-drawer">
-        <input type="checkbox" id="first-drawer" />
-       <label aria-label="Image Modifiers" class="first-label" for="first-drawer"><div class="tooltip">
-                <i class="fas fa-sliders-h"></i>
-                <span class="tooltiptext">Image modifiers</span>
-            </div>
+       <input type="checkbox" id="first-drawer" />
+       <label aria-label="Image Modifiers" class="first-label" for="first-drawer">
+            <span>Image modifiers</span>
+        </label>
+
+        <!--{% if page.transcription %}-->
+        <input type="checkbox" id="second-drawer" />
+        <label aria-label="Transcript" class="second-label" for="second-drawer">
+            <span>Transcript</span>
+        </label>
+        <!--{% endif %}-->
+        
+        <!-- TO: BM, could you add some if essay tags here please -->
+        <input type="checkbox" id="third-drawer" />
+        <label aria-label="Essay" class="third-label" for="third-drawer">
+            <span>Essay</span>
         </label>
         
-        {% if page.transcription %}
-        <input type="checkbox" id="second-drawer" />
-        
-            <label aria-label="Filter list" class="second-label" for="second-drawer">
-            <div class="tooltip">
-                <i class="fas fa-file-alt"></i>
-                <span class="tooltiptext">Transcript</span>
-            </div>
-            </label>
-        {% endif %}
-        
-            
-        
-        <div class="first-list">
+        <div class="drawer first-list">
             <div id="osd_modifiers">
                 <h2>Image Modifiers</h2>
                 <div id="adjustments">
@@ -80,12 +69,19 @@
             </div><!-- end .osd_modifiers -->
         </div><!-- end .filter-list -->
         
-        {% if page.transcription %}
-        <div class="second-list">
+        <!--{% if page.transcription %}-->
+        <div class="drawer second-list">
              <h2>Transcription</h2>
-            {{ page.transcription}}
+           <!-- {{ page.transcription}}-->
         </div>
-        {% endif %}
+         <!--{% endif %}-->
+
+         <!-- TO: BM, could you add some if essay tags here please -->
+        <div class="drawer third-list">
+             <h2>Essay</h2>
+        </div>
+
+       
           <div class="osd-image">
           <div class="osd-switcher">
             {% with siblings=self.get_siblings.live %}
