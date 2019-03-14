@@ -5,6 +5,7 @@ import logging
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.models import Page
 from wagtail.search import index
 
@@ -125,7 +126,9 @@ Image.content_panels = [
     FieldPanel('reference', classname='full'),
     FieldPanel('filename', classname='full'),
     # StreamFieldPanel('body'),
-    StreamFieldPanel('transcription'),
+    FieldPanel('transcription'),
+    DocumentChooserPanel('transcription_pdf', classname='full'),
+
 ]
 
 Image.promote_panels = Page.promote_panels

@@ -24,7 +24,11 @@ class WithStreamField(models.Model):
 
 
 class WithTranscription(models.Model):
-    transcription = StreamField(CMSStreamBlock(required=False), blank=True)
+    transcription = models.TextField(blank=True, null=True)
+    transcription_pdf = models.ForeignKey(
+        'wagtaildocs.Document', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
+    )
 
     class Meta:
         abstract = True
