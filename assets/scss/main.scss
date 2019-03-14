@@ -78,6 +78,21 @@ body{
 }
 
 
+/* TODO: Tiffany - this shouldn't be here! */
+div.transcription
+{
+  background: none;
+  border: none;
+  color: #fff;
+  display: block;
+  height: 80%; 
+  margin: 20px 0 0 0;
+  width: 100%;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
 
 /* Menu*/
 

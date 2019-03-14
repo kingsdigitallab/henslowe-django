@@ -11,11 +11,13 @@
             <span>Image modifiers</span>
         </label>
 
+        {% if self.specific.transcription_pdf %}
         <input type="checkbox" id="second-drawer" />
         <label aria-label="Transcript" class="second-label" for="second-drawer">
-            <span>Transcript</span>
+            <span>Transcription</span>
         </label>
-        
+        {% endif %}
+
         <!-- TO: BM, could you add some if essay tags here please -->
         <input type="checkbox" id="third-drawer" />
         <label aria-label="Essay" class="third-label" for="third-drawer">
@@ -67,12 +69,15 @@
             </div><!-- end .osd_modifiers -->
         </div><!-- end .filter-list -->
         
-        <!--{% if page.transcription %}-->
+        {% if self.specific.transcription_pdf %}
         <div class="drawer second-list">
              <h2>Transcription</h2>
-           <!-- {{ page.transcription}}-->
+             
+             <a href="{{ self.specific.transcription_pdf.url }}" download>Download PDF</a>
+
+             <div class="transcription">{{ self.specific.transcription }}</div>
         </div>
-         <!--{% endif %}-->
+         {% endif %}
 
          <!-- TO: BM, could you add some if essay tags here please -->
         <div class="drawer third-list">
