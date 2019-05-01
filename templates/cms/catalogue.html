@@ -5,12 +5,24 @@
 
 
 <div class="wrapper">
+	<div class="intro">
+	    <h2>Introduction</h2>
+	    <p>
+	    	Catalogue Adapted by Grace Ioppolo from George Warner, <i>The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich</i> (London: Longmans, Green, and Co, 1881); and Francis Bickley, <i>The Second Series of The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich</i> (London: privately printed, 1903).
+	    </p>
+	    <p>
+	    	The main aim of the Henslowe-Alleyn Digitisation Project is to provide the best possible images of every page of the manuscripts relating to theatrical affairs in the Henslowe-Alleyn Papers at Dulwich College. However, this aim had to be adjusted to suit the funding, resources and equipment available during photography and the conservation of the manuscripts being photographed.
+	    </p>
+	    <button>Read more > </button>
+        <!--{% include "cms/includes/streamfield.html" with blocks=self.body %}-->
+    </div>
+
     <div class="secondary-nav">
             {% get_site_root as site_root %}
             {% sub_menu root=site_root current_page=self %}
     </div>
     <div class="content">
-            {% include "cms/includes/streamfield.html" with blocks=self.body %}
+            <!--{% include "cms/includes/streamfield.html" with blocks=self.body %}-->
     </div>
 </div>
 
