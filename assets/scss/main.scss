@@ -441,31 +441,63 @@ main{
     .wrapper{
       height:100%;
       margin-top:3rem;
-
-      /* Intro */
-      .intro{
+      .intro-wrapper{
         border-bottom: 1px solid $grey;
-        padding-bottom: 4rem;
-        button{
-          border-radius: 0;
+        padding: 0 1% 2rem 1%;
+        p{
+          margin:1rem 0;
+        }
+        .readmore-state {
+          display: none;
+          ~ .readmore-trigger:before {
+            content: 'Read more >';
+          }
+          ~ label.readmore-trigger {
+            margin: -1rem 0 0 0;
+            display: inline-block;
+            border: 1px solid $black;
+          }
+          &:checked{ 
+            ~ .intro-expand {
+            opacity: 1;
+            font-size: inherit;
+            max-height: 999em;
+            }
+            ~ .readmore-trigger:before {
+              content: '< Show less';
+            }
+            ~ label.readmore-trigger {
+            }
+          }
+        }/* end .readmore-state */
+        .intro-expand {
+          opacity: 0;
+          max-height: 0;
+          font-size: 0;
+          transition: .5s ease;
+          ul{
+            li{
+              margin: 1rem 0;
+              line-height: 2rem;
+              &:last-child{
+                margin-bottom:5rem;
+              }
+            }
+          }
+        }/* end .readmore-target */ 
+        .readmore-trigger {
+          cursor: pointer;
           color: $black;
-          background: $white;
-          border: 1px solid $grey;
-          font-family: 'Muli',sans-serif;
-          font-size:0.7rem;
-          padding:0.5rem 1rem;
+          padding: 0.5rem 1rem;
+          font-size: 0.8rem;
           float: right;
-          text-transform: uppercase;
-          cursor:pointer;
-          display: block;
           &:hover{
             background: $black;
             color:$primary;
             border: 1px solid $black;
           }
-        }
-      }
-
+        }/* end .readmore-trigger */
+      }/* end .intro-wrapper */
 
       /* Accordion */
       ul.accordion{ 
@@ -477,7 +509,6 @@ main{
           display: none;  /* by default hide all sub menus */
           list-style: none;
         }
-
         input[type=checkbox] {
           position: absolute;
           opacity: 0;     /* hide native checkbox */
@@ -495,7 +526,7 @@ main{
             text-align: center;
           }
         }/* end label */
-        > li{  
+        > li{  /* First level */
           padding-bottom: 1rem;
           float: left;
            a{
@@ -506,7 +537,7 @@ main{
               display: inline-block;
               width:20%;
             }
-            .info{
+            .info{ 
               display: inline-block;
               width:70%;
               vertical-align: top;
@@ -546,7 +577,7 @@ main{
               }
             }/* end label */
           }/* input[type=checkbox]:checked */ 
-          >ul{
+          >ul{ /* Second level */
               float: left;
               width: 100%;
             >li{
@@ -554,41 +585,44 @@ main{
               float: left;
               width: 45%;
               display: block;
+                h3{
+                  font-size: 1rem;
+                }
                 label{
                 padding:0.3rem;
-
                 a{
-                text-decoration: none;
-                display: block;
-                color: $black;
-                font-size:1.1rem;
-                //border-bottom:1px solid lighten($grey,40%);
-                padding:0;
-                img{
-                  display: inline-block;
-                  width:20%;
-                }
-                .info{
-                  display: inline-block;
-                  width:70%;
-                  vertical-align: top;
-                  margin-left:5%;
-                  h3{
-                  display: inline-block;
-                  margin:0 0 0.3rem 0;
+                  text-decoration: none;
+                  display: block;
+                  color: $black;
+                  font-size:1.1rem;
+                  //border-bottom:1px solid lighten($grey,40%);
+                  padding:0;
+                  img{
+                    display: inline-block;
+                    width:20%;
                   }
-                  span{
-                  font-size: 0.7rem;
-                  margin-top: 0.2rem;
-                  line-height: 1.3;
-                  }
-                  h4{
-                  margin:0;
-                  font-weight: normal;
-                  font-size:0.8rem;
-                  }
-                }/* end .info */
-              }/* end a */
+                  .info{
+                    display: inline-block;
+                    width:70%;
+                    vertical-align: top;
+                    margin-left:5%;
+                    h3{
+                    display: inline-block;
+                    margin:0 0 0.3rem 0;
+                    font-size: 1rem;
+                    }
+                    span{
+                    font-size: 0.7rem;
+                    margin-top: 0.2rem;
+                    line-height: 1.3;
+                    }
+                    h4{
+                    margin:0;
+                    font-weight: normal;
+                    font-size:0.8rem;
+                    }
+                  }/* end .info */
+                }/* end a */
               }/* end label */
             }/* end >li */
           }/* end >ul */
