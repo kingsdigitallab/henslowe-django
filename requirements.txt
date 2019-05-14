@@ -1,6 +1,7 @@
 django<2.1
 django-compressor
 django-extensions
+django-require
 django-libsass
 django-model-utils
 django-redis
