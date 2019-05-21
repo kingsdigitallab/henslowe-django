@@ -18,12 +18,21 @@
         </label>
         {% endif %}
 
-        <!-- TO: BM, could you add some if essay tags here please -->
+        <!-- TO: Not needed but leaving commented out just in case
         <input type="checkbox" id="third-drawer" />
         <label aria-label="Essay" class="third-label" for="third-drawer">
             <span>Essay</span>
         </label>
-        
+        -->
+        <a href="">
+            <label aria-label="Essay" class="third-label" for="third-drawer">
+                
+                    <span>Essay</span>
+                
+            </label>
+        </a>
+
+
         <div class="drawer first-list">
             <div id="osd_modifiers">
                 <h2>Image Modifiers</h2>
@@ -79,53 +88,64 @@
         </div>
          {% endif %}
 
-         <!-- TO: BM, could you add some if essay tags here please -->
+        <!-- TO: Not needed but leaving commented out just in case
         <div class="drawer third-list">
              <h2>Essay</h2>
         </div>
+        -->
+       <a class="prev" href="">&laquo; </a>
+        <div class="select-dropdown article">
+            <select id="image_switcher">
 
-       
-          <div class="osd-image">
-          <div class="osd-switcher">
-            {% with siblings=self.get_siblings.live %}
-            {% if siblings %}
+           
+            <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Article {{ page.title }} </option>
+           
 
-                {% with prev=self.get_prev_siblings.live.first %}
-                {% if prev %}
-                <a class="prev" href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
+            </select>
+        </div>
+        <a class="next" href=""> &raquo;</a>
+
+        <div class="osd-image">
+              <div class="osd-switcher">
+                {% with siblings=self.get_siblings.live %}
+                {% if siblings %}
+
+                    {% with prev=self.get_prev_siblings.live.first %}
+                    {% if prev %}
+                    <a class="prev" href="{% pageurl prev %}">&laquo; {{ prev.title }}</a>
+                    {% endif %}
+                    {% endwith %}
+
+                    <div class="select-dropdown page">
+                        <select id="image_switcher">
+
+                            {% for page in siblings %}
+                            <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Page {{ page.title }} </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    {% with next=self.get_next_siblings.live.first %}
+                    {% if next %}
+                    <a class="next" href="{% pageurl next %}">{{ next.title }} &raquo;</a>
+                    {% endif %}
+                    {% endwith %}
+
                 {% endif %}
                 {% endwith %}
-
-                <div class="select-dropdown">
-                    <select id="image_switcher">
-
-                        {% for page in siblings %}
-                        <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>{{ page.title }} </option>
-                        {% endfor %}
-
-                    </select>
                 </div>
+                {% comment %}
+                This allows the image viewer to work locally...
+                {% endcomment %}
 
-                {% with next=self.get_next_siblings.live.first %}
-                {% if next %}
-                <a class="next" href="{% pageurl next %}">{{ next.title }} &raquo;</a>
+                {% if "VAGRANT"|settings_value %}
+                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
+
+                {% else %}
+                    <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
                 {% endif %}
-                {% endwith %}
-
-            {% endif %}
-            {% endwith %}
-            </div>
-            {% comment %}
-            This allows the image viewer to work locally...
-            {% endcomment %}
-
-            {% if "VAGRANT"|settings_value %}
-                <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{self.specific.filename}}"></div>
-
-            {% else %}
-                <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
-            {% endif %}
-        </div><!-- end .osd-image -->
+            </div><!-- end .osd-image -->
     </div><!-- end .osd-drawer -->
 
 

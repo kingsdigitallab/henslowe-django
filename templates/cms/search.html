@@ -11,6 +11,12 @@
 <div class="wrapper">
     <div class="content">
 
+    <div class="search-field">
+        <form action="">
+            <input name="q" type="search" value="" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search the site"> <button class="search-icon"></button>
+        </form>
+    </div>
+
     {% if results.paginator.count %}
 
         <ul class="search-results">

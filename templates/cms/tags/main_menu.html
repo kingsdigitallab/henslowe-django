@@ -5,14 +5,15 @@
   {% for page in menu_pages %}
   <li {% if page.active %} class="is-active" {% endif %}><a href="{% pageurl page %}">{{ page.title }}</a></li>
   {% endfor %}
-
+  <li><a href="/search/">Search</a></li>
+          <!-- TO: Will delete but commeting out for now
           <li>
             <form action="/search" method="get">
                 <input class="search expandright" id="searchright" type="search" name="q" value="{{q}}" placeholder="Search the site">
                 <label class="button searchbutton" for="searchright">Search</label>
             </form>
             </div>
-        </li>
+        </li>-->
 
   {% if request.user.is_authenticated %}
   {% if request.user.is_staff %}

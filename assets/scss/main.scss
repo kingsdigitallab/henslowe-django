@@ -77,6 +77,9 @@ body{
 	margin:0;
 }
 
+a{
+  cursor: pointer;
+}
 
 /* TODO: Tiffany - this shouldn't be here! */
 div.transcription
@@ -226,7 +229,78 @@ div.transcription
 
 /* Search */
 
-.button {
+    .search-field {
+        margin-top: 60px;
+        width: 100%;
+        text-align: center;
+        input[type=search] {
+            width: 100%;
+            height: 55px;
+            padding: 0 20px;
+            margin:0 -2%;
+            font-size: 1rem;
+            border: 1px solid $black;
+            outline: none;
+            opacity: 1;
+            -moz-appearance: none;/* older firefox */
+            -webkit-appearance: none; /* safari, chrome, edge and ie mobile */
+            appearance: none; /* rest */
+            &:focus {
+                border: 1px solid $secondary;
+                transition: 0.35s ease;
+                color: $black;
+                &::-webkit-input-placeholder {
+                    transition: opacity 0.45s ease;
+                    opacity: 0;
+                }
+                &::-moz-placeholder {
+                    transition: opacity 0.45s ease;
+                    opacity: 0;
+                }
+                &:-ms-placeholder {
+                    transition: opacity 0.45s ease;
+                    opacity: 0;
+                }
+            }
+        }
+        button.search-icon {
+            position: absolute;
+            width: 65px;
+            margin: 0 auto;
+            padding: 0;
+            margin-left: -60px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            &:before {
+                content: '';
+                position: absolute;
+                width: 35px;
+                height: 35px;
+                border: 2px solid #333;
+                border-radius: 100%;
+                top: 4px;
+                left: 0;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                right: 22px;
+                top: 43px;
+                width: 12px;
+                transform: rotate(45deg);
+                border: 1px solid #333;
+            }
+        }
+        button {
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }/* end .search-field */
+
+
+/*.button {
   display: inline-block;
   font-size: 1rem;
   padding-left: 15px;
@@ -314,7 +388,7 @@ div.transcription
       color: #666;
     }
   }
-}
+}*/
 
 .pagination
 {
@@ -342,7 +416,7 @@ div.transcription
   }
 }
 
-input {
+/*input {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -353,7 +427,7 @@ input {
   right: 0;
   -webkit-transition-delay: 0.7s;
     /* Safari */
-    transition-delay: 0.7s;
+   /* transition-delay: 0.7s;
   }
 
   input:focus {
@@ -639,13 +713,17 @@ main{
         label{
           display:none;
         }
+        h2{
+          font-family: 'Fjalla One', sans-serif;
+        }
         ul{
-         margin:0 0 0 -40px;
+         margin:0 0 0 -30px;
          li{
           list-style-type: none;
           font-family: 'Fjalla One', sans-serif;
           font-size: 1.1rem;
           display: block;
+          margin-left:10px;
           &:hover{
             background: lighten($grey,45%);
             a{
@@ -758,8 +836,20 @@ main{
     }
   }
 
+.openseadragon-container{
+  border:4px solid red;
+  div{
+    top:-1px!important;
+    div{
+      top:2px!important;
+      background-color: $black!important;
 
-
+      div{
+        cursor:pointer;
+      }
+    }
+  }
+}
 
 
 /**** DRAWER ****/
@@ -963,6 +1053,56 @@ main{
       }
     }/* end button */
   }/* end .drawer */
+    .select-dropdown {
+      position: relative;
+      background-color: $black;
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      border-radius: 0;
+      border:1px solid $primary;
+      select {
+        font-size: 1rem;
+        max-width: 100%;
+        padding: 4px 24px 4px 10px;
+        border: none;
+        color:$white;
+        background-color: transparent;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        &:active,
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+      &:hover{
+        background-color: $primary;
+        select{
+          color:$black;
+        }
+        &:after {
+          border-top: 5px solid $black;
+        }
+      }
+      &:after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        margin-top: -2px;
+        right: 8px;
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid $white;
+      }
+    }/* end .select-dropdown */
+
+
+
+
 
 	/*OSD Viewer */
 	.osd-viewer{
@@ -1025,52 +1165,6 @@ main{
         float: left;
       }
     }/* end .osd-switcher */
-    .select-dropdown {
-      position: relative;
-      background-color: $black;
-      display: inline-block;
-      width: auto;
-      max-width: 100%;
-      border-radius: 0;
-      border:1px solid $primary;
-      select {
-        font-size: 1rem;
-        max-width: 100%;
-        padding: 4px 24px 4px 10px;
-        border: none;
-        color:$white;
-        background-color: transparent;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        &:active,
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
-      }
-      &:hover{
-        background-color: $primary;
-        select{
-          color:$black;
-        }
-        &:after {
-          border-top: 5px solid $black;
-        }
-      }
-      &:after {
-        content: " ";
-        position: absolute;
-        top: 50%;
-        margin-top: -2px;
-        right: 8px;
-        width: 0; 
-        height: 0; 
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid $white;
-      }
-    }/* end .select-dropdown */
   }/* end .osd-drawer */
 }/* end main */
 
@@ -1230,7 +1324,7 @@ footer{
         }
       }
     }
-    .search {
+    /*.search {
       @include calc(height,"100%");
     }
     .expandright {
@@ -1242,7 +1336,7 @@ footer{
     .search:focus {
       width: 85%;
       outline: none;
-    }
+    }*/
 
     .about-expand {
       margin: 0;
@@ -1310,11 +1404,15 @@ footer{
               }
             }
           }
+          h2{
+            color:$white;
+          }
           ul{
             display: none;
             margin-top: 3.5rem;
-            margin-left: -29px;
-            width: calc(100% + 16px);
+            margin-left: 0.7rem;
+            width: calc(100% - 1.5rem);
+            background: $black;
             li{
               padding: 0 0.8rem;
               background-color: rgba(0,0,0,0.8);
