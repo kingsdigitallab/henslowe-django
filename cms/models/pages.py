@@ -86,7 +86,7 @@ class CatalogueEntry(Page, WithStreamField):
     ]
 
     subpage_types = [
-        'Image',
+        'CatalogueEntry', 'Image',
     ]
 
 
