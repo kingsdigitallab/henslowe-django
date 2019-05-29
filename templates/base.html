@@ -27,7 +27,7 @@
   <main>
     <header>
    {% block breadcrumbs %}{% include 'cms/includes/breadcrumbs.html' %}{% endblock %}
-    {% block page_title %}<h2>{{ self.title }} - {% if self.subtitle %}{{ self.subtitle }}{% endif %}</h2>{% endblock %}
+    {% block page_title %}<h2>{{ self.title }} {% if self.subtitle %} - {{ self.subtitle }}{% endif %}</h2>{% endblock %}
     </header>
 
 

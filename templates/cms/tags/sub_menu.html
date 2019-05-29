@@ -1,15 +1,12 @@
 {% load wagtailcore_tags %}
 {% if menu_pages %}
-<input type="checkbox" id="checkbox_toggle">
-    <label for="checkbox_toggle"><h4>Submenu</h4></label>
 
 <ul>
-<h2>Page title</h2>
     {% for page in menu_pages %}
     <a href="{% pageurl page %}">
 	    <li{% if page.active %} class="is-active" {% endif %}>
 	        <h3>{{ page.title }}
-	        {% if page.specific.subtitle %}</h3> <span>(X Articles)</span><h4>{{ page.specific.subtitle }}</h4>{% endif %}
+	        {% if page.specific.subtitle %}</h3> <h4>{{ page.specific.subtitle }}</h4>{% endif %}
 	    </li>
     </a>
     {% endfor %}
