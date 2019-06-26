@@ -472,7 +472,7 @@ main{
     color: $primary;
     text-decoration: none;
     &:hover{
-     text-decoration: underline;
+     //text-decoration: underline;
    }
  }
  header{
@@ -709,23 +709,34 @@ main{
         width:25%;
         margin-right:5%;
         float:left;
-        padding-left:0.1rem;
+        background: lighten($primary,20%);
         label{
           display:none;
         }
         h2{
           font-family: 'Fjalla One', sans-serif;
         }
+        h3{
+          font-size:1.1rem;
+          margin:0;
+          color: $black;
+        }
+        h4{
+          font-size:0.8rem;
+          margin:0;
+          font-family: 'Muli',sans-serif;
+          color: $black;
+        }
         ul{
-         margin:0 0 0 -30px;
+         margin:0 0 0 -40px;
          li{
           list-style-type: none;
           font-family: 'Fjalla One', sans-serif;
-          font-size: 1.1rem;
           display: block;
-          margin-left:10px;
+          padding:1rem;
           &:hover{
-            background: lighten($grey,45%);
+            opacity: 0.7;
+            background: lighten($primary,30%);
             a{
               -moz-transition:all 200ms ease-in;
               -webkit-transition:all 200ms ease-in;
@@ -734,6 +745,11 @@ main{
             }
           }
           &.is-active{
+            background: $black;
+            position: relative;
+            h3,h4{
+              color: $white;
+            }
            a{
             color:lighten($primary,5%);
             background: $black;
@@ -746,7 +762,17 @@ main{
              transition:all 200ms ease-in;
            }
          }
-       }
+         &:after{
+            content: " ";
+            position: absolute;
+            right: -12px;
+            top: 35%;
+            border-top: 15px solid transparent;
+            border-right: none;
+            border-left: 12px solid #222;
+            border-bottom: 15px solid transparent;
+           }
+       }/* end &.is-active */
        a{
         text-decoration: none;
         display: block;
@@ -754,9 +780,11 @@ main{
         font-size:1.1rem;
         //border-bottom:1px solid lighten($grey,40%);
         padding:  0.2rem 0.5rem;
+
               h3{
                 display: inline-block;
                 margin:0.3rem 0;
+
               }/* end h3 */
               span{
                 font-size: 0.7rem;
