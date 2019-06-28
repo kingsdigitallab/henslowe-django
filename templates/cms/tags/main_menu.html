@@ -1,20 +1,203 @@
 {% load wagtailcore_tags cms_tags %}
-<ul class=" medium-horizontal vertical dropdown menu">
+
+<ul>
+
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <a href="/">About</a>
+    </li>
+    <li>
+        <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/">Catalogue</a>
+        <ul>
+            <li>
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/">
+                    <h3>
+                      Introduction
+                    </h3>
+                </a>
+            </li>
+            <li>
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
+                    <h3>
+                      MSS 5
+                    </h3>
+                    <h4>
+                      Legal and Miscellaneous Papers of Edward Alleyn and his Family, 1612-1626.
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/miscellaneous-images/">
+                    <h3>
+                      Miscellaneous Images
+                    </h3>
+                </a>
+            </li>
+            <li>
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-7/">
+                    <h3>
+                      MSS 7
+                    </h3>
+                    <h4>                 
+                      Diary and Account Book of Philip Henslowe, 1592-1609.
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-2/">
+                    <h3>
+                      MSS 2
+                    </h3>
+                    <h4> 
+                      Letters and Papers of Philip Henslowe and Edward Alleyn as Joint Masters of the Royal Game of Bears, Bulls and Mastiff Dogs, 1598-1626.
+                    </h4>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="">
+        <a href="/essays/">Essays</a>
+        <ul>
+            <li>
+                <a href="/">
+                    <h3>
+                       Introduction
+                    </h3>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        The Deed of Partnership in the Rose Playhouse (January 10, 1587)
+                    </h3>
+                    <h4>
+                        Muniment 16
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        Ben Jonson’s Autograph Fair Copies of Two Poems
+                    </h3>
+                    <h4>
+                        MSS 1, Articles 135 and 136
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        Robert Daborne's Contracts to Write Plays for Philip Henslowe (1613)
+                    </h3>
+                    <h4>
+                        MSS 1, Article 70
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        The Contract for the Fortune Playhouse (1600)
+                    </h3>
+                    <h4>
+                        Muniment 22
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        The ‘Part’ of Orlando in Robert Greene’s play
+                    </h3>
+                    <h4>
+                        Dulwich MSS 1, Article 138, folio 8r
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        The Foundation Deed of God’s Gift College (1619)
+                    </h3>
+                    <h4>
+                        Muniment 584
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        A Draft of the Royal Patent for the Mastership of the Game of Bears, Bulls, and Mastiff Dogs (November 24, 1604)
+                    </h3>
+                    <h4>
+                        MSS 2, Article 5
+                    </h4>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="/transcriptions/">Transcripts</a>
+          <ul>
+            <li>
+                <a href="/">
+                    <h3>
+                       Introduction
+                    </h3>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        The Deed of Partnership in the Rose Playhouse (January 10, 1587)
+                    </h3>
+                    <h4>
+                        Muniment 16
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        Ben Jonson’s Autograph Fair Copies of Two Poems
+                    </h3>
+                    <h4>
+                        MSS 1, Articles 135 and 136
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <h3>
+                        Robert Daborne's Contracts to Write Plays for Philip Henslowe (1613)
+                    </h3>
+                    <h4>
+                        MSS 1, Article 70
+                    </h4>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="">
+        <a href="/search/">Search</a>
+    </li>
+
+</ul>
+
+
+<!--<ul>
   <li><a href="/">Home</a></li>
 
   {% for page in menu_pages %}
   <li {% if page.active %} class="is-active" {% endif %}><a href="{% pageurl page %}">{{ page.title }}</a></li>
   {% endfor %}
-  <li><a href="/search/">Search</a></li>
-          <!-- TO: Will delete but commeting out for now
-          <li>
-            <form action="/search" method="get">
-                <input class="search expandright" id="searchright" type="search" name="q" value="{{q}}" placeholder="Search the site">
-                <label class="button searchbutton" for="searchright">Search</label>
-            </form>
-            </div>
-        </li>-->
 
+
+  <li><a href="/search/">Search</a></li>
+ 
   {% if request.user.is_authenticated %}
   {% if request.user.is_staff %}
   
@@ -22,5 +205,4 @@
   {% endif %}
   <li><a href="/admin/logout/">Logout {{ request.user.first_name }}</a></li>
   {% endif %}
-</ul>
-
+</ul>-->
