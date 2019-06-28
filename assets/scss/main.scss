@@ -81,22 +81,6 @@ a{
   cursor: pointer;
 }
 
-/* TODO: Tiffany - this shouldn't be here! */
-div.transcription
-{
-  background: none;
-  border: none;
-  color: #fff;
-  display: block;
-  height: 80%; 
-  margin: 20px 0 0 0;
-  width: 100%;
-  white-space: pre-wrap;
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-}
-
 /* Menu*/
 
 #nav {
@@ -376,16 +360,17 @@ div.transcription
   border-top:3px solid $secondary;
   margin:0 -2rem;
   h2{
-   background: $black;
-   color: $white;
-   padding:0.4rem 2.3rem 0.6rem 2.3rem;
-   margin:0;
- }
- h3{
-
-   padding:0.6rem 2.3rem 0.6rem 2.3rem;
-   margin:0;
- }
+    background: $black;
+    color: $white;
+    padding:0.4rem 2.3rem 0.6rem 2.3rem;
+    margin:0;
+    font-family: 'Fjalla One', sans-serif;
+    font-size:1.2rem;
+  }
+  h3{
+    padding:0.6rem 2.3rem 0.6rem 2.3rem;
+    margin:0;
+  }
 }
 
 /* Breadcrumbs */
@@ -395,13 +380,10 @@ div.transcription
   list-style: none;
   margin: 0;
   padding:0.5rem 2.3rem 0 2.3rem;
-
-  li
-  {
+  li{
     display: inline-block;
     font-family: 'Muli', sans-serif;
-    &::after
-    {
+    &::after{
       color: $primary;
       content: ">";
       padding: 0 0 0 0.4rem;
@@ -644,7 +626,6 @@ div.transcription
       }/* input[type=checkbox]:checked */ 
     }/* end li*/
   } /* end ul.accordion */
-
   .secondary-nav{
     width:25%;
     margin-right:5%;
@@ -712,91 +693,86 @@ div.transcription
           border-left: 9px solid $black;
           border-bottom: 13px solid transparent;
         }
-      }/* end &.is-active */
-     
+      }/* end &.is-active */ 
+    }
+  }
+}/* end .secondary-nav */
+      .content{
+        width:70%;
+        float:left;
+        .highlight{
+          background: rgba(186, 178, 148, 0.4);
+        }
+        dl{
+          margin-top:0;
+          .card{
+            width:100%;
+            display: inline-block;
+            border-bottom: 1px solid lighten($grey,40%);
+            padding:1rem;
+            &:hover{
+              background:lighten($grey,45%);
+              dt h4{
+                color: $black;
+              }
+              dd{
+                color: $black;
+              }
             }
-          }
-          }/* end .secondary-nav */
-          .content{
-            width:70%;
-            float:left;
-            &.fullwidth{
-              width:100%;
-            }
+            dt{
+              width: 30%;
+              margin-right:5%;
+              display: inline-block;
+              vertical-align: middle;
 
-            .highlight{
-              background: rgba(186, 178, 148, 0.4);
-            }
-            dl{
-              margin-top:0;
-              .card{
-                width:100%;
+              h4{
+                font-family: 'Fjalla One', sans-serif;
+                font-size:1.1rem;
+                color:$grey;
+                margin-top:0;
+                font-weight: normal;
+                width:45%;
+                margin-right:3%;
                 display: inline-block;
-                border-bottom: 1px solid lighten($grey,40%);
-                padding:1rem;
-                &:hover{
-                  background:lighten($grey,45%);
-                  dt h4{
-                    color: $black;
-                  }
-                  dd{
-                    color: $black;
-                  }
-                }
-                dt{
-                  width: 30%;
-                  margin-right:5%;
-                  display: inline-block;
-                  vertical-align: middle;
-
-                  h4{
-                    font-family: 'Fjalla One', sans-serif;
-                    font-size:1.1rem;
-                    color:$grey;
-                    margin-top:0;
-                    font-weight: normal;
-                    width:45%;
-                    margin-right:3%;
-                    display: inline-block;
-                    vertical-align: middle;
-                  }
-                  img{
-                    width:50%;
-                    display: inline-block;
-                    vertical-align: middle;
-                  }
-                }
-                dd{
-                  width: 63%;
-                  display: inline-block;
-                  vertical-align: middle;
-                  margin: 0;
-                  padding: 0;
-                  color: $grey;
-                  span{
-                    width:100%;
-                  }
-                }
+                vertical-align: middle;
+              }
+              img{
+                width:50%;
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+            dd{
+              width: 63%;
+              display: inline-block;
+              vertical-align: middle;
+              margin: 0;
+              padding: 0;
+              color: $grey;
+              span{
+                width:100%;
               }
             }
           }
         }
       }
+    }
+  }
 
-      .openseadragon-container{
-        border:4px solid red;
+  .openseadragon-container{
+    border:4px solid red;
+    div{
+      top:-1px!important;
+      div{
+        top:2px!important;
+        background-color: $black!important;
+
         div{
-          top:-1px!important;
-          div{
-            top:2px!important;
-            background-color: $black!important;
-
-            div{
-              cursor:pointer;
-            }
-          }
+          cursor:pointer;
         }
       }
+    }
+  }
 
 
       /**** DRAWER ****/
@@ -822,7 +798,7 @@ div.transcription
               top:0;
               left: 0;
               color: white;
-              background: black;
+              background:$black;
               z-index: 3;
               width:55px;
               height:52px;
@@ -831,6 +807,19 @@ div.transcription
               font-size: 1.7rem;
               line-height: 1.8;
               visibility: visible;
+            }
+            div.transcription{
+              background: none;
+              border: none;
+              color: #fff;
+              display: block;
+              height: 80%; 
+              margin: 20px 0 0 0;
+              width: 100%;
+              white-space: pre-wrap;
+              overflow-y: scroll;
+              overflow-x: hidden;
+
             }
             /* First */
             &#first-drawer{ /* First */
@@ -899,12 +888,8 @@ div.transcription
           line-height: 1.1rem;
           position: absolute;
           right: 30px;
-          border-radius: 50%;
-          -moz-transition:all 200ms ease-in;
-          -webkit-transition:all 200ms ease-in;
-          -o-transition:all 200ms ease-in;
-          transition:all 200ms ease-in;
           cursor: pointer;  
+          border-radius:50%;
           &:before {
             font-family: "FontAwesome";
             display: inline-block;
@@ -913,7 +898,13 @@ div.transcription
             font-size: 2.1rem;
           }
           &:hover{
-            opacity: 0.7;
+            background:$black;
+            span{
+              color: $black;
+            }
+            &.first-label, &.second-label{
+              color: $white;
+            }
           }
           span{
             display: block;
@@ -921,13 +912,15 @@ div.transcription
             text-align: center;
             width:80px;
             margin-left:-17px;
+            font-family: 'Fjalla One',sans-serif;  
+            font-size: 0.8rem;
           }
           &.first-label{ /* First label*/
             margin-top:50px;
             padding:7px 0 0 2px;
             &:before {
               content: "\f1de";
-
+              font-size: 1.7rem;
             }
           }/* end .first-label */
           &.second-label{ /* Second label*/
@@ -935,6 +928,7 @@ div.transcription
             padding:9px 0 0 3px;
             &:before {
               content: "\f044";
+              font-size: 1.7rem;
             }
           }/* end .second-label */   
           &.third-label{ /* Third label*/
@@ -947,60 +941,120 @@ div.transcription
           }/* end .second-label */ 
         }/* end label */
 
-        .drawer{
-          position:fixed;
-          top:0;
-          right:0;
-          width:450px;
-          height:100%;
-          margin:0 -450px 0 0;
-          -moz-transition:all 200ms ease-in;
-          -webkit-transition:all 200ms ease-in;
-          -o-transition:all 200ms ease-in;
-          transition:all 200ms ease-in;
-          z-index:2;
-          background: $black;
-          padding: 0 15px 15px 15px;
-          color: white;
-          ul{
-            width:450px;
-            height:100%;
-            padding:1em;
-            background:black;
-            color:white;
-            margin:0;
-            list-style:none;
-            overflow:scroll;
-            li{
-              margin:0;
-              }/* end li*/
-              } /* end ul*/
-              button{
-                font-size: 0.8rem;
-                width: 100%;
-                border: none;
-                background-color:darken($primary,10%);
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 0.5rem;
-                margin: 1rem 0;
-                text-transform: uppercase;
-                color: white;
-                &.ui-corner-all{
-                  border-radius:0;
-                }
-                &:hover{
-                  opacity: 0.8;
-                  border: none;
-                  outline: none;
-                }
-                &.ui-state-active{
-                  background-color: $secondary;
-                }
-              }/* end button */
-            }/* end .drawer */
-            .select-dropdown {
+        .primary-pagination{
+          width: 100%;
+          text-align: center;
+          font-size: 1.6rem; 
+          margin-top:2rem;
+          a{
+            color: $black;
+            &:hover{
+              color:$secondary;
+            }
+          }
+          .select-dropdown {
+            background:$white;
+            border:0;
+            select{
+              color:$black;
+              font-family: 'Fjalla One',sans-serif;  
+              font-size: 1.6rem; 
+              cursor: pointer;
+            }
+            &:after{
+              border-top: 5px solid darken($grey,5%);
+            }
+            &:hover{
+              background:none;
+              select{
+                color:$secondary;
+              }
+              &:after {
+                border-top: 5px solid $secondary;
+              }
+            }
+          }
+        }/* end .primary-pagination */
+        .secondary-pagination{
+          width: 100%;
+          text-align: center;
+          font-size: 1rem; 
+          margin: 0 0 0.5rem 0;
+          a{
+            color: $white;
+            &:hover{
+              color:$primary;
+            }
+          }
+          .select-dropdown {
+            border-top:1px solid $white;
+            border-bottom:1px solid $white;
+            select{
+              color:$white;
+              font-size: 1rem; 
+              cursor: pointer;
+            }
+            &:after{
+              border-top: 5px solid $white;
+            }
+            &:hover{
+            border-top:1px solid $primary;
+            border-bottom:1px solid $primary;
+              select{
+                color:$white;
+              }
+              &:after {
+                border-top: 5px solid $primary;
+              }
+            }
+          }
+        }/* end .secondary-pagination */
+        .functions{
+          text-align: right;
+          padding:0 0.5rem 0 0;
+          margin:0.4rem 0 0.5rem 0;
+          font-family: 'Fjalla One',sans-serif;  
+          a{
+            background:$white;
+            padding: 0 0.5rem 0.3rem 0.5rem!important;
+            margin:0 0.2rem;
+            &:hover{
+              background:$primary;
+            }
+          }
+          span{
+            margin-top: 0.2rem;
+            line-height: 1.3;
+            -moz-transition:all 0 ease-in;
+            -webkit-transition:all 0 ease-in;
+            -o-transition:all 0 ease-in;
+            transition:all 0 ease-in;
+            color:$black;
+            float: right;
+            font-size: 0.8rem;
+            &.essay:before{
+              content: "\f040";
+              font-family: "FontAwesome";
+              font-size: 0.9rem;
+              line-height: 1;
+              padding:0 0.1rem;
+            }
+            &.pdf:before{
+              content: "\f1c1";
+              font-family: "FontAwesome";
+              font-size: 0.8rem;
+              padding:0 0.2rem;
+            }
+            &.print:before{
+              content: "\f02f";
+              font-family: "FontAwesome";
+              font-size: 0.8rem;
+              padding:0 0.2rem;
+            }
+          }
+        }/* end .functions */
+
+           /* .select-dropdown {
               position: relative;
               background-color: $black;
               display: inline-block;
@@ -1026,6 +1080,92 @@ div.transcription
               }
               &:hover{
                 background-color: $primary;
+                select{
+                  color:$black;
+                }
+                &:after {
+                  border-top: 5px solid $black;
+                }
+              }*/
+
+
+
+        .drawer{
+          position:fixed;
+          top:0;
+          right:0;
+          width:450px;
+          height:100%;
+          margin:0 -450px 0 0;
+          -moz-transition:all 200ms ease-in;
+          -webkit-transition:all 200ms ease-in;
+          -o-transition:all 200ms ease-in;
+          transition:all 200ms ease-in;
+          z-index:2;
+          background: $black;
+          padding: 0 15px 15px 15px;
+          color: white;
+          ul{
+            width:450px;
+            height:100%;
+            padding:1em;
+            background:$black;
+            color:white;
+            margin:0;
+            list-style:none;
+            overflow:scroll;
+            li{
+              margin:0;
+              }/* end li*/
+              } /* end ul*/
+              button{
+                font-size: 0.8rem;
+                width: 100%;
+                border: none;
+                background-color:$white;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                margin: 1rem 0;
+                text-transform: uppercase;
+                color: $black;
+                &.ui-corner-all{
+                  border-radius:0;
+                }
+                &:hover{
+                  background:$primary;
+                  border: none;
+                  outline: none;
+                }
+                &.ui-state-active{
+                  background-color: $secondary;
+                }
+              }/* end button */
+            }/* end .drawer */
+            .select-dropdown {
+              position: relative;
+              display: inline-block;
+              width: auto;
+              max-width: 100%;
+              border-radius: 0;
+              select {
+                font-size: 1rem;
+                max-width: 100%;
+                padding: 4px 24px 4px 10px;
+                border: none;
+                color:$white;
+                background-color: transparent;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                &:active,
+                &:focus {
+                  outline: none;
+                  box-shadow: none;
+                }
+              }
+              &:hover{
                 select{
                   color:$black;
                 }
@@ -1293,6 +1433,7 @@ div.transcription
         h2{
           padding: 0 0.8rem 0.6rem 0.8rem;
           font-size:1.3rem;
+
         }
       }/* end header */
       .wrapper{
@@ -1466,7 +1607,7 @@ div.transcription
             width:85%;
             height:100%;
             padding:1em;
-            background:black;
+            background:$black;
             color:white;
             margin:0;
             list-style:none;
