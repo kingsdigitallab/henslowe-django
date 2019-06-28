@@ -3,12 +3,15 @@
 
 <ul>
     {% for page in menu_pages %}
-    <a href="{% pageurl page %}">
 	    <li{% if page.active %} class="is-active" {% endif %}>
-	        <h3>{{ page.title }}
-	        {% if page.specific.subtitle %}</h3> <h4>{{ page.specific.subtitle }}</h4>{% endif %}
+	    	<a href="{% pageurl page %}">
+		        <h3>
+		        	{{ page.title }}
+		        	{% if page.specific.subtitle %}
+		    	</h3> 
+	        	<h4>{{ page.specific.subtitle }}</h4>{% endif %}
+	    	</a>
 	    </li>
-    </a>
     {% endfor %}
 </ul>
 {% endif %}
