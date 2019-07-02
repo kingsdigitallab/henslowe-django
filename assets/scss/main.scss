@@ -255,7 +255,7 @@ a{
     -webkit-appearance: none; /* safari, chrome, edge and ie mobile */
     appearance: none; /* rest */
     &:focus {
-      border: 1px solid $secondary;
+      border: 1px solid $grey;
       transition: 0.35s ease;
       color: $black;
       &::-webkit-input-placeholder {
@@ -277,25 +277,25 @@ a{
     width: 65px;
     margin: 0 auto;
     padding: 0;
-    margin-left: -60px;
+    margin-left: -30px;
     border: none;
     background-color: white;
     cursor: pointer;
     &:before {
       content: '';
       position: absolute;
-      width: 35px;
-      height: 35px;
+      width: 25px;
+      height: 25px;
       border: 2px solid #333;
       border-radius: 100%;
-      top: 4px;
+      top: 9px;
       left: 0;
     }
     &:after {
       content: '';
       position: absolute;
-      right: 22px;
-      top: 43px;
+      right: 28px;
+      top: 38px;
       width: 12px;
       transform: rotate(45deg);
       border: 1px solid #333;
@@ -509,7 +509,7 @@ a{
             color:darken($grey,5%);
             font-weight: normal;
             padding: 0.3rem 0 0.05rem 0.5rem;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
           }
         }/* end h3 */
@@ -610,7 +610,7 @@ a{
                   }
                 }
                 span{
-                  font-size: 0.7rem;
+                  font-size: 0.6rem;
                   margin-top: 0.2rem;
                   line-height: 1.3;
                 }

@@ -11,6 +11,7 @@
             <span>Image modifiers</span>
         </label>
 
+
         {% if self.specific.transcription_pdf %}
         <input type="checkbox" id="second-drawer" />
         <label aria-label="Transcript" class="second-label" for="second-drawer">
@@ -89,7 +90,7 @@
                         {% endif %}
                         {% endwith %}
                             <div class="select-dropdown">
-                                <select id="image_switcher">
+                                <select id="image_switcher" aria-label="image switcher">
                                     {% for page in siblings %}
                                     <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Page {{ page.title }} </option>
                                     {% endfor %}
@@ -118,7 +119,7 @@
                     <div class="primary-pagination">
             <a class="prev" href="">&#9664; </a>
                 <div class="select-dropdown">
-                    <select id="image_switcher">
+                    <select id="image_switcher" aria-label="image switcher">
                         <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Article {{ page.title }} </option>
                     </select>
                 </div>

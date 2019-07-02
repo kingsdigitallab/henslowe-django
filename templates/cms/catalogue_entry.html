@@ -64,7 +64,7 @@
                     </h3> 
                     {% if subpage.specific.subtitle %}
                     <h4>{{ subpage.specific.subtitle }}</h4>
-                    <input type="checkbox" name="group-{{ subpage.pk }}" id="group-{{ subpage.pk }}" unchecked="">
+                    <input type="checkbox" aria-label="checkbox subpages" name="group-{{ subpage.pk }}" id="group-{{ subpage.pk }}" unchecked="" name="name" role="role" value="value" aria-labelledby="checkbox subpages">
                     <label for="group-{{ subpage.pk }}">
                         <span>({{ subpage.get_children.count}} Articles)</span>
                     {% endif %}

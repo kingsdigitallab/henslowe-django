@@ -9,11 +9,9 @@
 {% block main %}
 
 <div class="wrapper">
-    <div class="content">
-
     <div class="search-field">
         <form action="">
-            <input name="q" type="search" value="" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search the site"> <button class="search-icon"></button>
+            <input name="search input" type="search" value="" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search the site" aria-label="search input"> <button class="search-icon" role="button" aria-label="search button"></button>
         </form>
     </div>
 
@@ -54,7 +52,6 @@
             <p>No search term supplied.</p>
         {% endif %}
     {% endif %}
-    </div>
 </div>
 
 {% endblock %}
