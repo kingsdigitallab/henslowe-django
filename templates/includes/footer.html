@@ -1,9 +1,30 @@
-
-<!-- TO: BM, please to put automatic year -->
+{% load staticfiles %}
 <p>
-    © 2019 
+    © 2019 <!-- TO: BM, please to put automatic year -->
 </p>
-<p>
-    Designed, developed and maintained by <a href="//kdl.kcl.ac.uk" title="King's Digital Lab">King's Digital Lab</a>
-</p>
+<ul>
+	<li>
+    <a href="//www.kcl.ac.uk/" title="King's College London logo" target="_blank">
+      <img src="{% static 'images/KCL-logo-white.svg' %}" alt="King's College London logo" >
+    </a>
+    </li>
+    <li>
+    <a href="//www.dulwich.org.uk" title="Dulwich College logo" target="_blank">
+          <img src="{% static 'images/Dulwich_College-bw.png' %}" alt="Dulwich College logo" >
+    </a>
+    </li>
+    <li>
+    <a href="//www.leverhulme.ac.uk" title="Leverhulme Trust logo" target="_blank">
+          <img src="{% static 'images/Leverhulme_Trust_bw.png' %}" alt="Leverhulme Trust logo" >
+    </a>
+    </li>
+    <li>
+    <a href="//www.reading.ac.uk" title="University of Reading logo" target="_blank">
+      <img src="{% static 'images/University_of_Reading-bw.png' %}" alt="University of Reading logo" >
+    </a>
+    </li>
 
+</ul>
+<p>
+    Designed, developed and maintained by <a href="//kdl.kcl.ac.uk" title="King's Digital Lab" target="_blank">King's Digital Lab</a>
+</p>
