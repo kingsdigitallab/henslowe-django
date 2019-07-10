@@ -3,7 +3,7 @@ app: {name: henslowe}
 git: {url: 'https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh'}
 motd: {file: 00-kdl}
 postgresql: {admin_user: postgres, cluster_name: main, cluster_reset: false, default_auth_method: trust,
-  encoding: UTF-8, initial_data_file: henslowe3_stg.sql, locale: en_GB.UTF-8, user: henslowe}
+  encoding: UTF-8, initial_data_file: dump.sql, locale: en_GB.UTF-8, user: henslowe}
 project_root: /vagrant
 python: {requirements: requirements-dev.txt, virtualenv_location: /home/vagrant/venv}
 system_packages: [ack-grep, adminer, aptitude, binutils, gdal-bin, git, git-core, libgdal-dev, libjpeg-dev,

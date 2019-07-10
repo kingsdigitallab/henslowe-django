@@ -7,21 +7,23 @@
 <div class="wrapper">
 
     <div class="secondary-nav">
-    <ul>
-        <li class="is-active">
-            <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
-                <h3>
-                    Introduction 
-                </h3> 
-            </a>
-        </li>
-    </ul>
-            {% get_site_root as site_root %}
-            {% sub_menu root=site_root current_page=self %}
+        <ul>
+            <li class="is-active">
+                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
+                    <h3>
+                        Introduction 
+                    </h3> 
+                </a>
+            </li>
+        </ul>
+
+        {% get_site_root as site_root %}
+        {% sub_menu root=site_root current_page=self %}
     </div>
+
     <div class="content">
         <div class="intro-wrapper">
-        <input type="checkbox" class="readmore-state" id="readmore">   
+            <input type="checkbox" class="readmore-state" id="readmore" aria-labelledby="read-more">
             <p>
                 Catalogue Adapted by Grace Ioppolo from George Warner, The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich (London: Longmans, Green, and Co, 1881); and Francis Bickley, The Second Series of The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich (London: privately printed, 1903).
             </p>
@@ -46,7 +48,7 @@
                 All photography was done at Dulwich College between August 2004 and September 2007. Dr and Mrs Cooper and Prof. Ioppolo remain very grateful to the generous support offered by staff at Dulwich College throughout that time.
             </p>
         </div>
-        <label for="readmore" class="readmore-trigger" aria-label="Read more"></label>
+        <label for="readmore" class="readmore-trigger" id="read-more"aria-label="Read more"><span class="hide">Read more</span></label>
     </div>
     </div>
 </div>
