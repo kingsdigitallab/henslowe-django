@@ -17,8 +17,6 @@
 
   {# % include 'includes/favicon.html' % #}
   <link rel="icon" type="image/png" href="{% static 'images/Henslowe-Alleyn-favicon.png' %}">
-
-
 </head>
 <body>
 
@@ -30,10 +28,14 @@
 
   <main>
     <header>
-   {% block breadcrumbs %}{% include 'cms/includes/breadcrumbs.html' %}{% endblock %}
-    {% block page_title %}<h2>{{ self.title }} {% if self.subtitle %} - {{ self.subtitle }}{% endif %}</h2>{% endblock %}
-    </header>
+      {% block breadcrumbs %}
+      {% include 'cms/includes/breadcrumbs.html' %}
+      {% endblock %}
 
+      {% block page_title %}
+      <h2>{{ self.title }} {% if self.subtitle %} - {{ self.subtitle }}{% endif %}</h2>
+      {% endblock %}
+    </header>
 
     {% block main %}
     {% endblock %}
@@ -41,9 +43,7 @@
 
   <footer>
     {% block footer %}
-
     {% include 'includes/footer.html' %}
-
     {% endblock %}
   </footer>
 

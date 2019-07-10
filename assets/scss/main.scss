@@ -1388,7 +1388,7 @@ main {
 footer {
   text-align: center;
   padding: 1rem;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 0;
   font-size: 0.8rem;
   background: $black;
   float: left;
@@ -1424,7 +1424,7 @@ footer {
 
     a {
       color: $primary;
-      text-decoration: none;
+      // text-decoration: none;
 
       &:hover {
         opacity: 0.7;
