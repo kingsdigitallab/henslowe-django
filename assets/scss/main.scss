@@ -562,13 +562,38 @@ main {
           }
 
           span {
-            color: darken($grey,5%);
+            color: darken($grey, 5%);
             font-weight: normal;
             padding: 0.3rem 0 0.05rem 0.5rem;
             font-size: 0.625rem;
             text-transform: uppercase;
           }
         } /* end h3 */
+
+        a.essay,
+        a.transcript {
+            color: darken($grey, 5%);
+            font-weight: normal;
+            padding: 0.3rem 0 0.05rem 0.5rem;
+            font-size: 0.625rem;
+            text-transform: uppercase;
+
+          &::before {
+            font-family: "FontAwesome";
+            padding: 0 0.2rem;
+          }
+        }
+
+        a.essay::before {
+          content: "\f040";
+          font-size: 0.875rem;
+          // line-height: 1;
+        }
+
+        a.transcript::before {
+          content: "\f15c";
+          font-size: 0.8125rem;
+        }
 
         span {
           margin-top: 0.2rem;
@@ -577,21 +602,6 @@ main {
           -webkit-transition: all 0 ease-in;
           -o-transition: all 0 ease-in;
           transition: all 0 ease-in;
-
-          &.essay:before {
-            content: "\f040";
-            font-family: "FontAwesome";
-            font-size: 0.875rem;
-            line-height: 1;
-            padding: 0 0.1rem;
-          }
-
-          &.transcript:before {
-            content: "\f15c";
-            font-family: "FontAwesome";
-            font-size: 0.8125rem;
-            padding: 0 0.2rem;
-          }
 
           &:hover {
             color: $secondary;

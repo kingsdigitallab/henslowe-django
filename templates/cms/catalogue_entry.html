@@ -33,8 +33,9 @@
                     </a>
                 {% endif %}      
                 <div class="info">
-                    <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a>
-                        <a href=""><span class="transcript">transcript</span></a>
+                    <h3>
+                        <a href="{{ subpage.specific.url }}">{{ subpage.title }}</a>
+                        <a href="" class="transcript"><span>transcript</span></a>
                         <a href=""><span class="essay">essay</span></a> 
                     </h3> 
                     <h4>
@@ -59,8 +60,8 @@
                 {% endif %}     
                 <div class="info">
                     <h3>{{ subpage.title }}
-                        <a href=""><span class="transcript">transcript</span></a>
-                        <a href=""><span class="essay">essay</span></a> 
+                        <a href="" class="transcript">transcript</a>
+                        <a href="" class="essay">essay</a> 
                     </h3> 
                     {% if subpage.specific.subtitle %}
                     <h4>{{ subpage.specific.subtitle }}</h4>
