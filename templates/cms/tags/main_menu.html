@@ -1,6 +1,25 @@
 {% load wagtailcore_tags cms_tags %}
 
 <ul>
+  <li><a href="/">Home</a></li>
+
+  {% for page in menu_pages %}
+  <li {% if page.active %} class="is-active" {% endif %}><a href="{% pageurl page %}">{{ page.title }}</a></li>
+  {% endfor %}
+
+
+  <li><a href="/search/">Search</a></li>
+ 
+  <!-- {% if request.user.is_authenticated %}
+  {% if request.user.is_staff %}
+  
+  <li><a href="/wagtail/">Admin Panel</a></li>
+  {% endif %}
+  <li><a href="/admin/logout/">Logout {{ request.user.first_name }}</a></li>
+  {% endif %} -->
+</ul>
+
+<!-- <ul>
 
     <li>
         <a href="/">Home</a>
@@ -185,24 +204,4 @@
         <a href="/search/">Search</a>
     </li>
 
-</ul>
-
-
-<!--<ul>
-  <li><a href="/">Home</a></li>
-
-  {% for page in menu_pages %}
-  <li {% if page.active %} class="is-active" {% endif %}><a href="{% pageurl page %}">{{ page.title }}</a></li>
-  {% endfor %}
-
-
-  <li><a href="/search/">Search</a></li>
- 
-  {% if request.user.is_authenticated %}
-  {% if request.user.is_staff %}
-  
-  <li><a href="/wagtail/">Admin Panel</a></li>
-  {% endif %}
-  <li><a href="/admin/logout/">Logout {{ request.user.first_name }}</a></li>
-  {% endif %}
-</ul>-->
+</ul> -->
