@@ -12,12 +12,12 @@
         </label>
 
 
-        {% if self.specific.transcription_pdf %}
+        <!-- {% if self.specific.transcription_pdf %}
         <input type="checkbox" id="second-drawer" />
         <label aria-label="Transcript" class="second-label" for="second-drawer">
             <span>Transcript</span>
         </label>
-        {% endif %}
+        {% endif %} -->
 
         <div class="drawer first-list">
             <div id="osd_modifiers">
@@ -64,7 +64,7 @@
             </div><!-- end .osd_modifiers -->
         </div><!-- end .filter-list -->
         
-        {% if self.specific.transcription_pdf %}
+        <!-- {% if self.specific.transcription_pdf %}
         <div class="drawer second-list">
              <h2>Transcription</h2>
              
@@ -72,27 +72,29 @@
 
              <div class="transcription">{{ self.specific.transcription }}</div>
         </div>
-         {% endif %}
+         {% endif %} -->
 
         <div class="osd-image">
               <div class="osd-switcher">
                 <div class="functions">
                     <a href=""><span class="essay"> essay</span></a>
                     <a href=""><span class="print"> print</span></a>
-                    <a href=""><span class="pdf"> pdf</span></a>
+                    {% if self.specific.transcription_pdf %}
+                        <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
+                    {% endif %}
                 </div>
                 {% with siblings=self.get_siblings.live %}
                 {% if siblings %}
                     <div class="secondary-pagination">
                     {% with prev=self.get_prev_siblings.live.first %}
-                    {% if prev %}
+                        {% if prev %}
                         <a class="prev" href="{% pageurl prev %}">{{ prev.title }} &laquo;</a>
                         {% endif %}
                         {% endwith %}
                             <div class="select-dropdown">
                                 <select id="image_switcher" aria-label="image switcher">
                                     {% for page in siblings %}
-                                    <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Page {{ page.title }} </option>
+                                        <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Image {{ page.title }} </option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -116,15 +118,29 @@
                     <div id="osd-{{self.id}}" class="osd-viewer" data-image-url="/images/{{self.specific.filename}}"></div>
                 {% endif %}
             </div><!-- end .osd-image -->
+            {% with siblings=self.get_siblings.live %}
+                {% if siblings %}
                     <div class="primary-pagination">
-            <a class="prev" href="">&#9664; </a>
-                <div class="select-dropdown">
-                    <select id="image_switcher" aria-label="image switcher">
-                        <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Article {{ page.title }} </option>
-                    </select>
-                </div>
-            <a class="next" href=""> &#9654;</a>
-        </div>
+                    {% with prev=self.get_prev_siblings.live.first %}
+                        {% if prev %}
+                        <a class="prev" href="{% pageurl prev %}"><i class="fas fa-angle-left"></i></a>
+                        {% endif %}
+                        {% endwith %}
+                            <div class="select-dropdown">
+                                <select id="image_switcher" aria-label="image switcher">
+                                    {% for page in siblings %}
+                                        <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Image {{ page.title }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% with next=self.get_next_siblings.live.first %}
+                        {% if next %}
+                        <a class="next" href="{% pageurl next %}"><i class="fas fa-angle-right"></i></a>
+                    {% endif %}
+                    {% endwith %}
+                    </div>
+                {% endif %}
+                {% endwith %}
     </div><!-- end .osd-drawer -->
 
 

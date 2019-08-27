@@ -6,7 +6,7 @@
 
 <div class="wrapper">
     <div class="secondary-nav">
-        <ul>
+        <!-- <ul>
             <li>
                 <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
                     <h3>
@@ -14,100 +14,95 @@
                     </h3> 
                 </a>
             </li>
-        </ul>
+        </ul> -->
         {% get_site_root as site_root %}
         {% sub_menu root=site_root current_page=self %}
     </div>
 <div class="content">
-        <ul class="accordion">
+        {% include "cms/includes/streamfield.html" with blocks=self.body %}
+        <ul class="entry">
             {% for subpage in self.get_children %} 
-            {% if subpage.specific.content_type.name == "image" %}
-            <li>
-             {% if "VAGRANT"|settings_value %}
-             <a href="{{ subpage.specific.url }}">
-                    <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{subpage.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
-                    </a>
-                {% else %}
-                <a href="{{ subpage.specific.url }}">
-                    <img src="/images/{{subpage.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
-                    </a>
-                {% endif %}      
-                <div class="info">
-                    <h3>
-                        <a href="{{ subpage.specific.url }}">{{ subpage.title }}</a>
-                        <a href="" class="transcript">transcript</a>
-                        <a href="" class="essay">essay</a> 
-                    </h3> 
-                    <h4>
-                        <a href="{{ subpage.specific.url }}">
-                            {{subpage.specific.reference}}
-                        </a>
-                    </h4>
-                    {% if subpage.specific.subtitle %}
-                        <a href="{{ subpage.specific.url }}">
-                            <h4>({{ subpage.specific.subtitle }})</h4>
-                        </a>
-                    {% endif %}
-                </div>
-            </li>
-            {% else %}
-            <li>
-                {% if "VAGRANT"|settings_value %}
-                    <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{subpage.get_children.0.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
-                {% else %}
-                    <img src="/images/{{subpage.get_children.0.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
-                
-                {% endif %}     
-                <div class="info">
-                    <h3>{{ subpage.title }}
-                        <a href="" class="transcript">transcript</a>
-                        <a href="" class="essay">essay</a> 
-                    </h3> 
-                    {% if subpage.specific.subtitle %}
-                    <h4>{{ subpage.specific.subtitle }}</h4>
-                    <input type="checkbox" aria-label="checkbox subpages" name="group-{{ subpage.pk }}" id="group-{{ subpage.pk }}" unchecked="">
-                    <label for="group-{{ subpage.pk }}">
-                        <span>({{ subpage.get_children.count}} Articles)</span>
-                    {% endif %}
-                    </label>
-                
-                    <ul>
-                        {% for image in subpage.get_children %}
-                        <li>                           
-                            {% if "VAGRANT"|settings_value %}
-                            <a href="{{ image.specific.url }}">
-                                <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{image.specific.filename}}/full/,500/0/default.jpg" alt="{{ image.title }}">
-                            </a>
+                {% if subpage.specific.content_type.name == "image" %}
+                <li>
+                    <a href="{{ subpage.specific.url }}">
+                        {% if "VAGRANT"|settings_value %}
+                                <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{subpage.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
                             {% else %}
-                            <a href="{{ image.specific.url }}">
-                                <img src="/images/{{image.specific.filename}}/full/,500/0/default.jpg" alt="{{ image.title }}">
-                            </a>
-                            {% endif %}                                  
-                            <div class="info">
-                                <h3><a href="{{ image.specific.url }}">
-                                    {{ image.title }}
-                                    </a>
-                                    <a href="" class="transcript">transcript</a>
-                                    <a href="" class="essay">essay</a>  
-                                </h3>  
-                                <h4>
-                                    <a href="{{ image.specific.url }}">
-                                        {{image.specific.reference}}
-                                    </a>
-                                </h4>
+                                <img src="/images/{{subpage.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
+                        {% endif %}  
+                    </a>    
+                    <div class="info">
+                        <div class="entry-description">
+                            <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
+                            <a href="" class="transcript">transcript</a>
+                            <a href="" class="essay">essay</a>
+                        </div> 
+                        <h4><a href="{{ subpage.specific.url }}">{{subpage.specific.reference}}</a></h4>
+                        {% if subpage.specific.subtitle %}
+                            <h4>{{ subpage.specific.subtitle }}</h4>
+                        {% endif %}
+                    </div>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ subpage.specific.url }}">
+                        {% if "VAGRANT"|settings_value %}
+                            <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{subpage.get_children.0.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
+                            {% else %}
+                            <img src="/images/{{subpage.get_children.0.specific.filename}}/full/,500/0/default.jpg" alt="{{ subpage.title }}">
+                        {% endif %}
+                    </a>     
+                    <div class="info">
+                        <div class="entry-description">
+                            <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
+                            <a href="" class="transcript">transcript</a>
+                            <a href="" class="essay">essay</a>
+                            <span style="margin: 0px 10px">|</span>
+                            <span class="image-count">{{ subpage.get_children.count}} Images</span> 
+                        </div> 
+                        {% if subpage.specific.subtitle %}
+                            <h4>{{ subpage.specific.subtitle }}</h4>
+                            <input type="checkbox" aria-label="checkbox subpages" name="group-{{ subpage.pk }}" id="group-{{ subpage.pk }}" unchecked="">
+                            <label for="group-{{ subpage.pk }}"> {{ subpage.get_children.count}} images</label>
+                        {% endif %}
+                        <!-- {% if subpage.specific.subtitle %}
+                            <h4>{{ subpage.specific.subtitle }}</h4>
+                        {% endif %} -->
+                        <ul>
+                            {% for image in subpage.get_children %}
+                            <li>                           
+                                {% if "VAGRANT"|settings_value %}
+                                <a href="{{ image.specific.url }}">
+                                    <img src="https://imageserver.cch.kcl.ac.uk/henslowe3/webroot/images/jp2/{{image.specific.filename}}/full/,500/0/default.jpg" alt="{{ image.title }}">
+                                </a>
+                                {% else %}
+                                <a href="{{ image.specific.url }}">
+                                    <img src="/images/{{image.specific.filename}}/full/,500/0/default.jpg" alt="{{ image.title }}">
+                                </a>
+                                {% endif %}                                  
+                                <div class="info">
+                                    <div class="entry-description">
+                                        <h3>{{ image.title }}</h3> 
+                                        <p class="reference">{{image.specific.reference}}</p>
+                                        <a href="" class="transcript">transcript</a>
+                                        <a href="" class="essay">essay</a>  
+                                    </div>
+                                    <h4>
+                                        <a href="{{ image.specific.url }}">
+                                            See image <span hidden>of {{image.specific.reference}}</span>
+                                        </a>
+                                    </h4>
 
-                                {% if image.specific.subtitle %}
-                                    <a href="{{ image.specific.url }}">
+                                    {% if image.specific.subtitle %}
                                         <h4>({{ image.specific.subtitle }})</h4>
-                                    </a>
-                                {% endif %}                            
-                            </div>                         
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </li>
-            {% endif %}
+                                    {% endif %}                            
+                                </div>                         
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

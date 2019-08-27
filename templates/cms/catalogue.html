@@ -6,7 +6,7 @@
 
 <div class="wrapper">
 
-    <div class="secondary-nav">
+    <!-- <div class="secondary-nav">
         <ul>
             <li class="is-active">
                 <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
@@ -19,9 +19,16 @@
 
         {% get_site_root as site_root %}
         {% sub_menu root=site_root current_page=self %}
+    </div> -->
+    <div class="secondary-nav">
+        {% get_site_root as site_root %}
+        {% sub_menu root=site_root current_page=self %}
+    </div>
+    <div class="content">
+        {% include "cms/includes/streamfield.html" with blocks=self.body %}
     </div>
 
-    <div class="content">
+    <!-- <div class="content">
         <div class="intro-wrapper">
             <input type="checkbox" class="readmore-state" id="readmore" aria-labelledby="read-more">
             <p>
@@ -50,7 +57,7 @@
         </div>
         <label for="readmore" class="readmore-trigger" id="read-more"aria-label="Read more"><span class="hide">Read more</span></label>
     </div>
-    </div>
+    </div> -->
 </div>
 
 {% endblock %}

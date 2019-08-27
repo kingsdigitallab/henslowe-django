@@ -40,7 +40,8 @@ class HomePage(Page, WithStreamField):
 
     subpage_types = [
         'Catalogue',
-        'RichTextPage'
+        'RichTextPage',
+        'SingleColumnPage'
     ]
 
 
@@ -155,3 +156,20 @@ RichTextPage.content_panels = [
 ]
 
 RichTextPage.promote_panels = Page.promote_panels
+
+class SingleColumnPage(Page, WithStreamField):
+    subtitle = models.TextField(
+        blank=True, null=True, help_text='Leave blank for none.')
+
+    search_fields = Page.search_fields + [
+        index.SearchField('subtitle'),
+        index.SearchField('body'),
+    ]
+
+SingleColumnPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('subtitle', classname='full'),
+    StreamFieldPanel('body'),
+]
+
+SingleColumnPage.promote_panels = Page.promote_panels
