@@ -267,7 +267,7 @@ a {
 /* 6. Search */
 
 .search-field {
-  margin-top: 60px;
+  // margin-top: 60px;
   width: 100%;
   text-align: center;
 
@@ -277,7 +277,12 @@ a {
   }
 
   h3 {
+    font-size: 16px;
+  }
 
+  ol {
+    padding-left: 17px;
+    margin-top: 2rem;
   }
   
   input[type=search] {
@@ -356,7 +361,7 @@ a {
 
 .pagination {
   text-align: center;
-  color: darken($grey, 20%);
+  color: $black;
   padding: 1rem 0 0;
 
   a {
@@ -466,7 +471,7 @@ main {
 
 .wrapper {
   height: 100%;
-  margin-top: 3rem;
+  // margin-top: 3rem;
 
   .intro-wrapper {
     border-bottom: 1px solid $grey;
@@ -1742,9 +1747,10 @@ footer {
 
   p {
     color: $white;
-
+    margin-bottom: 2rem;
     a {
       color: lighten($primary, 15%);
+      font-size: 14px;
       // text-decoration: none;
 
       &:hover {
@@ -2438,7 +2444,7 @@ footer {
           flex-direction: column;
           margin-bottom: 40px;
           a {
-            width: 100%;
+            // width: 100%;
             img {
               width: auto;
               max-height: 200px;
@@ -2469,7 +2475,7 @@ footer {
         margin-bottom: 0.5rem;
 
         li {
-          width: 100%;
+          // width: 100%;
 
           img {
               height: 40px;

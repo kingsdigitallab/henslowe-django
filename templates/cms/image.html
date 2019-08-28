@@ -77,7 +77,13 @@
         <div class="osd-image">
               <div class="osd-switcher">
                 <div class="functions">
-                    <a href=""><span class="essay"> essay</span></a>
+                    {% with parent=self.get_parent %}
+                        {% if parent.specific.essay %}
+                            {% with parent.specific.essay as e %}
+                                <a href="{{ e.url }}"><span class="essay">essay</span></a>
+                            {% endwith %}
+                        {% endif %} 
+                    {% endwith %}
                     <a href=""><span class="print"> print</span></a>
                     {% if self.specific.transcription_pdf %}
                         <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
