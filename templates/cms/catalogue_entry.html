@@ -5,6 +5,8 @@
 
 
 <div class="wrapper">
+    <input type="checkbox" aria-label="checkbox categories" unchecked="" id="show-secondary-nav" class="show-secondary-nav">
+    <label for="show-secondary-nav" class="show-secondary-nav"> catalogue</label>
     <div class="secondary-nav">
         <!-- <ul>
             <li>
@@ -34,7 +36,9 @@
                     <div class="info">
                         <div class="entry-description">
                             <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
-                            <a href="" class="transcript">transcript</a>
+                            {% if subpage.transcription_pdf %}
+                                <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
+                            {% endif %}
                             <a href="" class="essay">essay</a>
                         </div> 
                         <h4><a href="{{ subpage.specific.url }}">{{subpage.specific.reference}}</a></h4>
@@ -55,7 +59,9 @@
                     <div class="info">
                         <div class="entry-description">
                             <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
-                            <a href="" class="transcript">transcript</a>
+                            {% if subpage.transcription_pdf %}
+                                <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
+                            {% endif %}
                             <a href="" class="essay">essay</a>
                             <span style="margin: 0px 10px">|</span>
                             <span class="image-count">{{ subpage.get_children.count}} Images</span> 
@@ -84,7 +90,9 @@
                                     <div class="entry-description">
                                         <h3>{{ image.title }}</h3> 
                                         <p class="reference">{{image.specific.reference}}</p>
-                                        <a href="" class="transcript">transcript</a>
+                                        {% if subpage.transcription_pdf %}
+                                            <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
+                                        {% endif %}
                                         <a href="" class="essay">essay</a>  
                                     </div>
                                     <h4>

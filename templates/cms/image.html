@@ -92,7 +92,8 @@
                         {% endif %}
                         {% endwith %}
                             <div class="select-dropdown">
-                                <select id="image_switcher" aria-label="image switcher">
+                                <!-- removed id="image_switcher" -->
+                                <select aria-label="image switcher">
                                     {% for page in siblings %}
                                         <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Image {{ page.title }} </option>
                                     {% endfor %}
@@ -123,11 +124,12 @@
                     <div class="primary-pagination">
                     {% with prev=self.get_prev_siblings.live.first %}
                         {% if prev %}
-                        <a class="prev" href="{% pageurl prev %}"><i class="fas fa-angle-left"></i></a>
+                            <a class="prev" href="{% pageurl prev %}"><i class="fas fa-angle-left"></i></a>
                         {% endif %}
                         {% endwith %}
                             <div class="select-dropdown">
-                                <select id="image_switcher" aria-label="image switcher">
+                                <!-- removed id="image_switcher" -->
+                                <select aria-label="image switcher">
                                     {% for page in siblings %}
                                         <option value="{{ page.pk }}" data-url="{% pageurl page %}" {% if page.specific == self %}selected{% endif %}>Image {{ page.title }} </option>
                                     {% endfor %}
