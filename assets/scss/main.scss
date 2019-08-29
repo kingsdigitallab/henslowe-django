@@ -265,25 +265,19 @@ a {
 }
 
 /* 6. Search */
+ol.search-results {
+  padding-left: 17px;
+  margin-top: 2rem;
+}
+
+h3 {
+  font-size: 16px;
+}
 
 .search-field {
   // margin-top: 60px;
   width: 100%;
   text-align: center;
-
-  .search-results {
-    padding-left: 17px;
-    padding-top: 1rem;
-  }
-
-  h3 {
-    font-size: 16px;
-  }
-
-  ol {
-    padding-left: 17px;
-    margin-top: 2rem;
-  }
   
   input[type=search] {
     width: 100%;
@@ -1984,6 +1978,10 @@ footer {
 
       .secondary-nav {
         display: none;
+      }
+      
+      button.search-icon {
+        margin-left: -37px;
       }
 
       label {
