@@ -164,6 +164,25 @@ RichTextPage.content_panels = [
 
 RichTextPage.promote_panels = Page.promote_panels
 
+class TranscriptionPage(Page, WithTranscription):
+    page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+TranscriptionPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    DocumentChooserPanel('transcription_pdf'),
+    PageChooserPanel('page'),
+
+
+]
+
+RichTextPage.promote_panels = Page.promote_panels
+
 class SingleColumnPage(Page, WithStreamField):
     subtitle = models.TextField(
         blank=True, null=True, help_text='Leave blank for none.')

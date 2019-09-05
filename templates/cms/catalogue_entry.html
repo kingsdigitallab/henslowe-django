@@ -36,8 +36,8 @@
                     <div class="info">
                         <div class="entry-description">
                             <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
-                            {% if subpage.transcription_pdf %}
-                                <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
+                            {% if subpage.specific.transcription_pdf %}
+                                <a href="{{ subpage.specific.transcription_pdf.url }}" class="transcript">transcript</a>
                             {% endif %}
                             {% if self.specific.essay %}
                                 {% with self.specific.essay as e %}
@@ -70,6 +70,9 @@
                                 {% with subpage.specific.essay as e %}
                                     <a href="{{ e.url }}" class="essay">essay</a>
                                 {% endwith %}
+                            {% endif %}
+                            {% if subpage.specific.transcription_pdf %}
+                                <a href="{{ subpage.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
                             {% endif %}
                             {% if subpage.transcription_pdf or subpage.specific.essay %} <span style="margin: 0px 10px">|</span> {% endif %}
                             <span class="image-count">{{ subpage.get_children.count}} Images</span> 

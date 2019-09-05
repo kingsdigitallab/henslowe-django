@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.core.files import File
-from cms.models import (CatalogueEntry, Image)
+from cms.models import (CatalogueEntry, Image, RichTextPage,
+                        TranscriptionPage)
 from wagtail.documents.models import Document
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
@@ -31,6 +32,25 @@ class Command(BaseCommand):
 
         self.input_file = PdfFileReader(open(self.file_path, "rb"))
         self.catalogue_entry = CatalogueEntry.objects.get(title=self.reference)
+        
+        
+        transcription_page = RichTextPage.objects.get(
+            slug='transcriptions')
+
+        trans_page = TranscriptionPage()
+        trans_page.title = self.reference
+        trans_page.page = self.catalogue_entry
+
+        with open(self.file_path, 'rb') as f:
+            document = Document()
+            document.title = 'Transcript: {}'.format(self.reference)
+            document.file.save('Transcript {}.pdf'.format(
+                self.reference), File(f), save=True)
+            document.save()
+
+            trans_page.transcription_pdf = document
+        transcription_page.add_child(instance=trans_page)
+        trans_page.save()
 
         num_of_pages = self.input_file.getNumPages()
 
