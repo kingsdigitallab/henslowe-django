@@ -84,6 +84,9 @@
                             {% endwith %}
                         {% endif %} 
                     {% endwith %}
+                    {% if self.essay %}
+                        <a href="{{ self.essay.url }}"><span class="essay">essay</span></a>
+                    {% endif %} 
                     <a href=""><span class="print"> print</span></a>
                     {% if self.specific.transcription_pdf %}
                         <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>

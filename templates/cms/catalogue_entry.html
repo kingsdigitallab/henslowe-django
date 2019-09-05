@@ -21,6 +21,14 @@
         {% sub_menu root=site_root current_page=self %}
     </div>
 <div class="content">
+    
+        {% if self.specific.essay %}
+        <div class="info">
+            <a href="{{ self.specific.essay.url }}" class="essay">essay</a>
+        </div>
+        {% endif %}
+    
+                            
         {% include "cms/includes/streamfield.html" with blocks=self.body %}
         <ul class="entry">
             {% for subpage in self.get_children %} 
@@ -39,8 +47,8 @@
                             {% if subpage.specific.transcription_pdf %}
                                 <a href="{{ subpage.specific.transcription_pdf.url }}" class="transcript">transcript</a>
                             {% endif %}
-                            {% if self.specific.essay %}
-                                {% with self.specific.essay as e %}
+                            {% if subpage.specific.essay %}
+                                {% with subpage.specific.essay as e %}
                                     <a href="{{ e.url }}" class="essay">essay</a>
                                 {% endwith %}
                             {% endif %}
@@ -63,9 +71,7 @@
                     <div class="info">
                         <div class="entry-description">
                             <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
-                            {% if subpage.transcription_pdf %}
-                                <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
-                            {% endif %}
+                         
                             {% if subpage.specific.essay %}
                                 {% with subpage.specific.essay as e %}
                                     <a href="{{ e.url }}" class="essay">essay</a>
@@ -101,11 +107,11 @@
                                     <div class="entry-description">
                                         <h3>{{ image.title }}</h3> 
                                         <p class="reference">{{image.specific.reference}}</p>
-                                        {% if subpage.transcription_pdf %}
-                                            <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
+                                        {% if image.specific.transcription_pdf %}
+                                            <a href="{{ image.specific.transcription_pdf.url }}" class="transcript">transcript</a>
                                         {% endif %}
-                                        {% if subpage.specific.essay %}
-                                            {% with subpage.specific.essay as e %}
+                                        {% if image.specific.specific.essay %}
+                                            {% with image.specific.specific.essay as e %}
                                                 <a href="{{ e.url }}" class="essay">essay</a>
                                             {% endwith %}
                                         {% endif %} 

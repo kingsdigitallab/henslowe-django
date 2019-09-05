@@ -115,6 +115,13 @@ class Image(Page, WithStreamField, WithTranscription):
     filename = models.TextField(
         blank=True, null=True, help_text='Filename of JP2 image.\
         Leave blank if image is not available.')
+    essay = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('subtitle'),
@@ -136,6 +143,8 @@ Image.content_panels = [
     # StreamFieldPanel('body'),
     FieldPanel('transcription'),
     DocumentChooserPanel('transcription_pdf', classname='full'),
+    PageChooserPanel('essay'),
+
 
 ]
 
