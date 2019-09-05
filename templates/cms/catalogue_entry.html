@@ -39,7 +39,11 @@
                             {% if subpage.transcription_pdf %}
                                 <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
                             {% endif %}
-                            <a href="" class="essay">essay</a>
+                            {% if self.specific.essay %}
+                                {% with self.specific.essay as e %}
+                                    <a href="{{ e.url }}" class="essay">essay</a>
+                                {% endwith %}
+                            {% endif %}
                         </div> 
                         <h4><a href="{{ subpage.specific.url }}">{{subpage.specific.reference}}</a></h4>
                         {% if subpage.specific.subtitle %}
@@ -62,8 +66,12 @@
                             {% if subpage.transcription_pdf %}
                                 <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
                             {% endif %}
-                            <a href="" class="essay">essay</a>
-                            <span style="margin: 0px 10px">|</span>
+                            {% if subpage.specific.essay %}
+                                {% with subpage.specific.essay as e %}
+                                    <a href="{{ e.url }}" class="essay">essay</a>
+                                {% endwith %}
+                            {% endif %}
+                            {% if subpage.transcription_pdf or subpage.specific.essay %} <span style="margin: 0px 10px">|</span> {% endif %}
                             <span class="image-count">{{ subpage.get_children.count}} Images</span> 
                         </div> 
                         {% if subpage.specific.subtitle %}
@@ -93,7 +101,11 @@
                                         {% if subpage.transcription_pdf %}
                                             <a href="{{ subpage.transcription_pdf.url }}" class="transcript">transcript</a>
                                         {% endif %}
-                                        <a href="" class="essay">essay</a>  
+                                        {% if subpage.specific.essay %}
+                                            {% with subpage.specific.essay as e %}
+                                                <a href="{{ e.url }}" class="essay">essay</a>
+                                            {% endwith %}
+                                        {% endif %} 
                                     </div>
                                     <h4>
                                         <a href="{{ image.specific.url }}">

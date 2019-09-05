@@ -4,7 +4,7 @@ import logging
 
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, PageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.models import Page
 from wagtail.search import index
@@ -12,6 +12,7 @@ from wagtail.search import index
 from .behaviours import WithStreamField, WithTranscription
 
 from django.db import models
+from modelcluster.fields import ParentalKey
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +81,13 @@ Catalogue.promote_panels = Page.promote_panels
 class CatalogueEntry(Page, WithStreamField):
     subtitle = models.TextField(
         blank=True, null=True, help_text='Leave blank for none.')
+    essay = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('subtitle'),
@@ -90,15 +98,14 @@ class CatalogueEntry(Page, WithStreamField):
         'CatalogueEntry', 'Image',
     ]
 
-
 CatalogueEntry.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('subtitle', classname='full'),
     StreamFieldPanel('body'),
+    PageChooserPanel('essay'),
 ]
 
 CatalogueEntry.promote_panels = Page.promote_panels
-
 
 class Image(Page, WithStreamField, WithTranscription):
     subtitle = models.TextField(
