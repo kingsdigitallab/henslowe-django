@@ -62,11 +62,12 @@ class Command(BaseCommand):
                 self._process(res_page_no, res_outfile, res_text)
 
     def _process(self, page_no, outfile, text):
+        print('Processing: {} {}'.format(self.reference, page_no))
+
         image = Image.objects.descendant_of(
             self.catalogue_entry).get(
-                reference='{} {}'.format(self.reference, page_no))
+                reference__endswith=page_no)
 
-        print('Processing: {}'.format(image.reference))
         if not self.textonly:
             temp_filename = self._temp_filename()
 
