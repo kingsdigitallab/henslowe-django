@@ -24,7 +24,7 @@
     
         {% if self.specific.essay %}
         <div class="info">
-            <a href="{{ self.specific.essay.url }}" class="essay">essay</a>
+            <a href="{{ self.specific.essay.url }}" class="essay" aria-label="Linked essay {{ self.specific.essay }}">{{ self.specific.essay }}</a>
         </div>
         {% endif %}
     
@@ -45,11 +45,11 @@
                         <div class="entry-description">
                             <h3><a href="{{ subpage.specific.url }}">{{ subpage.title }}</a></h3>
                             {% if subpage.specific.transcription_pdf %}
-                                <a href="{{ subpage.specific.transcription_pdf.url }}" class="transcript">transcript</a>
+                                <a href="{{ subpage.specific.transcription_pdf.url }}" class="transcript" aria-label="Transcript for {{ subpage.title }}">transcript</a>
                             {% endif %}
                             {% if subpage.specific.essay %}
                                 {% with subpage.specific.essay as e %}
-                                    <a href="{{ e.url }}" class="essay">essay</a>
+                                    <a href="{{ e.url }}" class="essay" aria-label="Essay for {{ subpage.title }}">essay</a>
                                 {% endwith %}
                             {% endif %}
                         </div> 
@@ -74,7 +74,7 @@
                          
                             {% if subpage.specific.essay %}
                                 {% with subpage.specific.essay as e %}
-                                    <a href="{{ e.url }}" class="essay">essay</a>
+                                    <a href="{{ e.url }}" class="essay" aria-label="Essay for {{ subpage.title }}">essay</a>
                                 {% endwith %}
                             {% endif %}
                             {% if subpage.specific.transcription_pdf %}
@@ -108,11 +108,11 @@
                                         <h3>{{ image.title }}</h3> 
                                         <p class="reference">{{image.specific.reference}}</p>
                                         {% if image.specific.transcription_pdf %}
-                                            <a href="{{ image.specific.transcription_pdf.url }}" class="transcript">transcript</a>
+                                            <a href="{{ image.specific.transcription_pdf.url }}" class="transcript" aria-label="Transcript for {{ subpage.title }}">transcript</a>
                                         {% endif %}
                                         {% if image.specific.specific.essay %}
                                             {% with image.specific.specific.essay as e %}
-                                                <a href="{{ e.url }}" class="essay">essay</a>
+                                                <a href="{{ e.url }}" class="essay" aria-label="Essay for {{ subpage.title }}">essay</a>
                                             {% endwith %}
                                         {% endif %} 
                                     </div>

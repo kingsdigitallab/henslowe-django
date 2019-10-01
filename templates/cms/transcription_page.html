@@ -4,19 +4,24 @@
 {% block main %}
 
 <div class="wrapper">
-        <input type="checkbox" aria-label="checkbox categories" unchecked="" id="show-secondary-nav" class="show-secondary-nav">
-        <label for="show-secondary-nav" class="show-secondary-nav"> items</label>
+    <input type="checkbox" aria-label="checkbox categories" unchecked="" id="show-secondary-nav" class="show-secondary-nav">
+    <label for="show-secondary-nav" class="show-secondary-nav"> items</label>
     <div class="secondary-nav">
             {% get_site_root as site_root %}
             {% sub_menu root=site_root current_page=self %}
     </div>
     <div class="content">
-        {% if self.page %}
-            Trasncription for: <a href="{{ self.page.url }}">{{ self.page}}</a>
+        {% include "cms/includes/streamfield.html" with blocks=self.body %}
+        {% if self.page_field %}
+            <p>Transcriptions for: <a href="{{ self.page_field.url }}">{{ self.page_field}}</a></p>
         {% endif %}
 
-        {% if self.specific.transcription_pdf %}
-            <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
+        {% if self.specific.transcript %}
+            <ol>
+                {% for t in self.specific.transcript %}
+                    <li><a href="{{ t.url }}"><span class="pdf"> {{ t }} </span></a></li>
+                {% endfor %}
+             </ol>
         {% endif %}
     </div>
 </div>

@@ -9,7 +9,7 @@ from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.models import Page
 from wagtail.search import index
 
-from .behaviours import WithStreamField, WithTranscription
+from .behaviours import WithStreamField, WithTranscription, WithMultipleTranscriptions
 
 from django.db import models
 from modelcluster.fields import ParentalKey
@@ -162,6 +162,7 @@ class RichTextPage(Page, WithStreamField):
 
     subpage_types = [
         'RichTextPage',
+        'TranscriptionPage'
     ]
 
 
@@ -173,8 +174,8 @@ RichTextPage.content_panels = [
 
 RichTextPage.promote_panels = Page.promote_panels
 
-class TranscriptionPage(Page, WithTranscription):
-    page = models.ForeignKey(
+class TranscriptionPage(Page, WithMultipleTranscriptions):
+    page_field = models.ForeignKey(
         'wagtailcore.Page',
         null=True,
         blank=True,
@@ -184,13 +185,11 @@ class TranscriptionPage(Page, WithTranscription):
 
 TranscriptionPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    DocumentChooserPanel('transcription_pdf'),
-    PageChooserPanel('page'),
-
-
+    StreamFieldPanel('transcript'),
+    PageChooserPanel('page_field'),
 ]
 
-RichTextPage.promote_panels = Page.promote_panels
+TranscriptionPage.promote_panels = Page.promote_panels
 
 class SingleColumnPage(Page, WithStreamField):
     subtitle = models.TextField(

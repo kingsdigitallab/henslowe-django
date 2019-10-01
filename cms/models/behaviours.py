@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 from wagtail.core.fields import StreamField
 
-from .streamfield import CMSStreamBlock
-
+from .streamfield import CMSStreamBlock, TranscriptionBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 
 class WithFeedImage(models.Model):
     feed_image = models.ForeignKey(
@@ -29,6 +29,12 @@ class WithTranscription(models.Model):
         'wagtaildocs.Document', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
+
+    class Meta:
+        abstract = True
+
+class WithMultipleTranscriptions(models.Model):
+    transcript = StreamField(TranscriptionBlock(required=False), blank=True)
 
     class Meta:
         abstract = True

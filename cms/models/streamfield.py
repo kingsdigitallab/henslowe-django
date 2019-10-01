@@ -3,12 +3,12 @@ from __future__ import unicode_literals
 from django import forms
 from wagtail.core.blocks import (
     CharBlock, FieldBlock, PageChooserBlock, RawHTMLBlock, RichTextBlock,
-    StreamBlock, StructBlock, TextBlock, URLBlock
+    StreamBlock, StructBlock, TextBlock, URLBlock, StructBlock
 )
-from wagtail.documents.blocks import DocumentChooserBlock
+
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
-
+from wagtail.documents.blocks import DocumentChooserBlock
 
 class HTMLAlignmentChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -103,3 +103,6 @@ class CMSStreamBlock(StreamBlock):
     embed = EmbedBlock(icon='media')
 
     html = AlignedHTMLBlock(icon='code', label='Raw HTML')
+
+class TranscriptionBlock(StreamBlock):
+    transcriptions = DocumentChooserBlock(icon='doc-full-inverse')
