@@ -187,7 +187,7 @@ RichTextPage.content_panels = [
 
 RichTextPage.promote_panels = Page.promote_panels
 
-class TranscriptionPage(Page, WithMultipleTranscriptions):
+class TranscriptionPage(Page,  WithStreamField, WithMultipleTranscriptions):
     page_field = models.ForeignKey(
         'wagtailcore.Page',
         null=True,
@@ -198,6 +198,7 @@ class TranscriptionPage(Page, WithMultipleTranscriptions):
 
 TranscriptionPage.content_panels = [
     FieldPanel('title', classname='full title'),
+    StreamFieldPanel('body'),
     StreamFieldPanel('transcript'),
     PageChooserPanel('page_field'),
 ]

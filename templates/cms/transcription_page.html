@@ -11,11 +11,10 @@
             {% sub_menu root=site_root current_page=self %}
     </div>
     <div class="content">
-        {% include "cms/includes/streamfield.html" with blocks=self.body %}
         {% if self.page_field %}
             <p>Transcriptions for: <a href="{{ self.page_field.url }}">{{ self.page_field}}</a></p>
         {% endif %}
-
+        {% include "cms/includes/streamfield.html" with blocks=self.body %}
         {% if self.specific.transcript %}
             <ol>
                 {% for t in self.specific.transcript %}
