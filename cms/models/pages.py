@@ -9,6 +9,8 @@ from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.models import Page
 from wagtail.search import index
 
+from django.shortcuts import redirect
+
 from .behaviours import WithStreamField, WithTranscription, WithMultipleTranscriptions
 
 from django.db import models
@@ -45,7 +47,6 @@ class HomePage(Page, WithStreamField):
         'SingleColumnPage'
     ]
 
-
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('subtitle', classname='full'),
@@ -68,6 +69,11 @@ class Catalogue(Page, WithStreamField):
         'CatalogueEntry',
     ]
 
+    #redirect to the first child page
+    def serve(self, request):
+        child = self.get_children().live().public().first()
+        if child:
+            return redirect(child.url)
 
 Catalogue.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -164,6 +170,13 @@ class RichTextPage(Page, WithStreamField):
         'RichTextPage',
         'TranscriptionPage'
     ]
+
+    #redirect to the first child page
+    def serve(self, request):
+        if self.depth == 3:
+            child = self.get_children().live().public().first()
+            return redirect(child.url)
+        return super().serve(request)
 
 
 RichTextPage.content_panels = [
