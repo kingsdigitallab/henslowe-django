@@ -89,7 +89,7 @@
                     {% endif %} 
                     <!-- <a role="button" onclick="window.print()"><span class="print"> print</span></a> -->
                     {% if self.specific.transcription_pdf %}
-                        <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
+                        <a href="{{ self.specific.transcription_pdf.url }}"><span class="pdf"> Download PDF transcript</span></a>
                     {% endif %}
                 </div>
                 {% with siblings=self.get_siblings.live %}
