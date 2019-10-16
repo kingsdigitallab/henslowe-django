@@ -81,14 +81,14 @@
                                 <a href="{{ subpage.specific.transcription_pdf.url }}"><span class="pdf"> pdf</span></a>
                             {% endif %}
                             {% if subpage.transcription_pdf or subpage.specific.essay %} <span style="margin: 0px 10px">|</span> {% endif %}
-                            {% if subpage.get_children.count > 0%}
+                            {% if subpage.get_children.count > 0 %}
                                 <span class="image-count">{{ subpage.get_children.count }} Images</span> 
                             {% endif %}
                         </div> 
                         {% if subpage.specific.subtitle %}
                             <h4>{{ subpage.specific.subtitle }}</h4>
                             <input type="checkbox" aria-label="checkbox subpages" name="group-{{ subpage.pk }}" id="group-{{ subpage.pk }}" unchecked="">
-                            {% if subpage.get_children.count > 0%}
+                            {% if subpage.get_children.count > 0 %}
                                 <label for="group-{{ subpage.pk }}"> {{ subpage.get_children.count }} images</label>
                             {% endif %}
                         {% endif %}
