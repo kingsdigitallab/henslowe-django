@@ -16,11 +16,9 @@
         {% endif %}
         {% include "cms/includes/streamfield.html" with blocks=self.body %}
         {% if self.specific.transcript %}
-            <ol>
-                {% for t in self.specific.transcript %}
-                    <li><a href="{{ t.url }}"><span class="pdf"> {{ t }} </span></a></li>
-                {% endfor %}
-             </ol>
+            {% for t in self.specific.transcript %}
+                <p><a href="{{ t.url }}"><span class="pdf"> {{ t }} </span></a></p>
+            {% endfor %}
         {% endif %}
     </div>
 </div>
