@@ -5,21 +5,6 @@
 
 
 <div class="wrapper">
-
-    <!-- <div class="secondary-nav">
-        <ul>
-            <li class="is-active">
-                <a href="/a-catalogue-of-the-manuscript-and-muniment-images-3/mss-5/">
-                    <h3>
-                        Introduction 
-                    </h3> 
-                </a>
-            </li>
-        </ul>
-
-        {% get_site_root as site_root %}
-        {% sub_menu root=site_root current_page=self %}
-    </div> -->
     <input type="checkbox" aria-label="checkbox categories" unchecked="" id="show-secondary-nav" class="show-secondary-nav">
     <label for="show-secondary-nav" class="show-secondary-nav"> catalogue</label>
     <div class="secondary-nav">
@@ -29,37 +14,6 @@
     <div class="content">
         {% include "cms/includes/streamfield.html" with blocks=self.body %}
     </div>
-
-    <!-- <div class="content">
-        <div class="intro-wrapper">
-            <input type="checkbox" class="readmore-state" id="readmore" aria-labelledby="read-more">
-            <p>
-                Catalogue Adapted by Grace Ioppolo from George Warner, The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich (London: Longmans, Green, and Co, 1881); and Francis Bickley, The Second Series of The Catalogue of the Manuscripts and Muniments of Alleyn’s College of God’s Gift at Dulwich (London: privately printed, 1903).
-            </p>
-            <p>
-                The main aim of the Henslowe-Alleyn Digitisation Project is to provide the best possible images of every page of the manuscripts relating to theatrical affairs in the Henslowe-Alleyn Papers at Dulwich College. However, this aim had to be adjusted to suit the funding, resources and equipment available during photography and the conservation of the manuscripts being photographed.
-            </p>
-        <div class="intro-expand">
-            <h3>The Photography of the Images</h3>
-            <p>
-                Dr David Cooper, assisted by Prof Grace Ioppolo, and, often, Mrs Gill Cooper, photographed each page of the manuscripts in 600 dpi resolution with professional equipment, including a tripod-mounted Sinar camera, two tripod-mounted lights, and specialised Macintosh software to process each photograph. The set-up of each photograph took between 5 and 30 minutes, and the photographs presented here of each image resulted from 16-64 photographs, which were integrated by computer software into one single photograph.
-            </p>
-            <p>
-                In order to protect this archive of fragile vellum, parchment and paper manuscripts, the photography of manuscripts in bound volumes was done using a specially-designed cradle (produced under Dr Cooper’s supervision) that used a vacuum pump to lightly flatten each page against the cradle. In this way, neither the manuscripts nor the binding of their volumes sustained any damage during photography. Larger unbound items, including the muniments, were photographed while placed flat on the floor, using a special, and more complicated, photography process. All of the items, whether bound or unbound, were photographed against a black background that provides the best possible contrast and offers remarkably clear images of watermarks in the paper manuscripts.
-            </p>
-            <p>
-                As many pages as possible, including of blank verso or recto pages, were photographed. An exception to this rule were the versos of the Orlando ‘part’, which were not photographed (and contained no text or markings at all). As the ‘part’ was originally put together as a continuous scroll, successive recto images give a close representation of its original state.
-            </p>
-            <p>
-                Dr Cooper’s method of photography produces the best possible result for bound and unbound manuscripts. In only a very few instances is any text obscured by the 19th century binding of the volumes or by the attachment of seals after the completion of manuscripts or muniments. A small number of manuscripts, including those that are still tightly folded and cannot be opened flat, were too fragile to photograph at this time. It is possible that with further funding, more manuscripts in the archive will be photographed and their images added to the site.
-            </p>
-            <p>
-                All photography was done at Dulwich College between August 2004 and September 2007. Dr and Mrs Cooper and Prof. Ioppolo remain very grateful to the generous support offered by staff at Dulwich College throughout that time.
-            </p>
-        </div>
-        <label for="readmore" class="readmore-trigger" id="read-more"aria-label="Read more"><span class="hide">Read more</span></label>
-    </div>
-    </div> -->
 </div>
 
 {% endblock %}
