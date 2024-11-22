@@ -55,6 +55,9 @@ docs/_build/
 # PyBuilder
 target/
 
+# Private!
+private_data/
+
 # Local
 .DS_Store
 .babelrc
@@ -62,10 +65,11 @@ target/
 local.py
 #local_*.py
 logs/
+media/
 static/
 
+.env*
+docker-compose.override.yml
 
-# Private!
-private_data/
-
-.vagrant_provisioning/playbook.retry
+volumes/db*
+volumes/images
