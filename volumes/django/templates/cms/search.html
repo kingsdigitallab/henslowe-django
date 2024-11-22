@@ -1,63 +1,66 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags cms_tags %}
-
 {% block meta_title %}Search Results{% endblock %}
 {% block page_title %}
     {% if q %}
-        <h2>Search Results for <i>{{ q }}</i></h2>
+        <h2>
+            Search Results for <i>{{ q }}</i>
+        </h2>
     {% else %}
         <h2>Search our site</h2>
     {% endif %}
 {% endblock %}
-
-{% block page_subtitle %}<h3>{{ results.paginator.count }} Result{{ results.paginator.count|pluralize }} Found</h3>{% endblock %}
-
-
+{% block page_subtitle %}
+    <h3>{{ results.paginator.count }} Result{{ results.paginator.count|pluralize }} Found</h3>
+{% endblock %}
 {% block main %}
-
-<div class="wrapper">
-    <div class="search-field">
-        <form action="">
-            <input name="q" type="search" value="" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search our site" aria-label="search input"> <button class="search-icon" aria-label="search button"></button>
-        </form>
-    </div>
-
-    {% if results.paginator.count %}
-        <h3>{{ results.paginator.count }} Result{{ results.paginator.count|pluralize }} Found</h3>
-        <ol class="search-results">
-            {% for result in results_qs %}
-            <li><a href="{{ result.0.url }}?highlight={{q}}">{{ result.0.title }}</a>
-            <p>{{result.1|keeptags:"em"|safe}}</p>
-            </li>
-            {% endfor %}
-        </ol>
-
-        <div class="pagination">
+    <div class="wrapper">
+        <div class="search-field">
+            <form action="">
+                <input name="q"
+                       type="search"
+                       value=""
+                       autocomplete="off"
+                       autocorrect="off"
+                       spellcheck="false"
+                       placeholder="Search our site"
+                       aria-label="search input">
+                <button class="search-icon" aria-label="search button"></button>
+            </form>
+        </div>
+        {% if results.paginator.count %}
+            <h3>{{ results.paginator.count }} Result{{ results.paginator.count|pluralize }} Found</h3>
+            <ol class="search-results">
+                {% for result in results_qs %}
+                    <li>
+                        <a href="{{ result.url }}?highlight={{ q }}">{{ result.title }}</a>
+                        <p>{{ result.specific.body|truncatewords_html:50|keeptags:"em"|richtext }}</p>
+                    </li>
+                {% endfor %}
+            </ol>
+            <div class="pagination">
                 {% if results.has_previous %}
                     <span class="prev">
-                        <a href="?q={{q}}&amp;page=1">&laquo; first</a> / 
-                        <a href="?q={{q}}&amp;page={{ results.previous_page_number }}">previous</a>
+                        <a href="?q={{ q }}&amp;page=1">&laquo; first</a> /
+                        <a href="?q={{ q }}&amp;page={{ results.previous_page_number }}">previous</a>
                     </span>
                 {% endif %}
-
-                <span class="current">
-                    Page {{ results.number }} of {{ results.paginator.num_pages }}
-                </span>
-
+                <span class="current">Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
                 {% if results.has_next %}
                     <span class="next">
-                        <a href="?q={{q}}&amp;page={{ results.next_page_number }}">next</a> / 
-                        <a href="?q={{q}}&amp;page={{ results.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?q={{ q }}&amp;page={{ results.next_page_number }}">next</a> /
+                        <a href="?q={{ q }}&amp;page={{ results.paginator.num_pages }}">last &raquo;</a>
                     </span>
                 {% endif %}
-        </div>
-    {% else %}
-        {% if q %}
-            <p>No results found for <i>{{ q }}</i>.</p>
+            </div>
         {% else %}
-            <p>No search term supplied.</p>
+            {% if q %}
+                <p>
+                    No results found for <i>{{ q }}</i>.
+                </p>
+            {% else %}
+                <p>No search term supplied.</p>
+            {% endif %}
         {% endif %}
-    {% endif %}
-</div>
-
+    </div>
 {% endblock %}
