@@ -1,0 +1,98 @@
+name: aofm
+
+services:
+  proxy:
+    image: gitlab.kdl.kcl.ac.uk:5050/docker-images/core/kdl-apache-proxy
+    volumes:
+      - ../volumes/proxy/pathmap.yml:/maps/pathmap.yaml:ro
+      - ../volumes/proxy/robots.txt:/www/robots.txt:ro
+      - ../volumes/django/media:/www/media
+      - ../volumes/django/static:/www/static
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  django:
+    build:
+      context: ..
+      dockerfile: ./compose/django/Dockerfile
+    restart: unless-stopped
+    expose:
+      - ${DJANGO_PORT:-8000}
+    volumes:
+      - ../volumes/django:/app
+    env_file:
+      - .env
+    command:
+      [
+        "/usr/local/bin/gunicorn",
+        "henslowe.wsgi",
+        "--bind",
+        "0.0.0.0:8000",
+        "--chdir=/app",
+        "--timeout",
+        "180",
+        "--forwarded-allow-ips=0.0.0.0",
+      ]
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    build:
+      context: ..
+      dockerfile: ./compose/postgres/Dockerfile
+    volumes:
+      - ../volumes/db:/var/lib/postgresql/data
+      - ../volumes/db_backups:/backups
+    env_file:
+      - .env
+    expose:
+      - 5432
+    healthcheck:
+      test:
+        ["CMD", "pg_isready", "-d", "${POSTGRES_DB}", "-U", "${POSTGRES_USER}"]
+      interval: 1s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:5.0
+    restart: unless-stopped
+    expose:
+      - ${REDIS_PORT:-6379}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+
+  cantaloupe:
+    image: islandora/cantaloupe:3
+    restart: unless-stopped
+    expose:
+      - 8182
+    volumes:
+      - ../volumes/images:/images:ro
+      - ../volumes/cantaloupe:/var/cache/cantaloupe
+    environment:
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: true
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE: FilesystemCache
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_PATHNAME: /var/cache/cantaloupe/derivative
+      CANTALOUPE_FILESYSTEMSOURCE_BASICLOOKUPSTRATEGY_PATH_PREFIX: "/images/"
+      CANTALOUPE_HEAP_MAX: 4G
+      CANTALOUPE_HEAP_MIN: 2G
+      CANTALOUPE_SOURCE_STATIC: FilesystemSource
+      #
+      # CANTALOUPE_HTTP_MAX_THREADS: "10"
+      # CANTALOUPE_HTTP_ACCEPT_QUEUE_LIMIT: "20"
+      # CANTALOUPE_TEMP_PATHNAME: /var/cache/cantaloupe
+      # CANTALOUPE_PROCESSOR_STREAMS_BUFFER_SIZE: 131072
+      # CANTALOUPE_PROCESSOR_STREAM_RETRIEVAL_STRATEGY: StreamStrategy
+      # CANTALOUPE_CACHE_SERVER_WORKER_ENABLED: "true"
+      # CANTALOUPE_CACHE_SERVER_WORKER_INTERVAL: "300"
+      # CANTALOUPE_LOG_APPLICATION_LEVEL: debug
