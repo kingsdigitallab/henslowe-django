@@ -80,6 +80,7 @@ services:
       - ../volumes/images:/images:ro
       - ../volumes/cantaloupe:/var/cache/cantaloupe
     environment:
+      CANTALOUPE_JAVA_OPTS: "-XX:-UseBASE64Intrinsics -XX:UseAVX=2"
       CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: true
       CANTALOUPE_CACHE_SERVER_DERIVATIVE: FilesystemCache
       CANTALOUPE_CACHE_SERVER_DERIVATIVE_PATHNAME: /var/cache/cantaloupe/derivative
